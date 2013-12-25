@@ -6,8 +6,10 @@ final class Weapon {
 	public String NAME;
 	public double MAX_DAMAGE, MIN_DAMAGE, DAMAGE_DO_START, DAMAGE_DO_END, RATE_OF_FIRE, MUZZLE_VELOCITY, SUPPRESSION, RECOIL_UP, RECOIL_LEFT, RECOIL_RIGHT, FIRST_SHOT_MULTIPLIER, RECOIL_DECREASE, ADS_STATIONARY_STANDING_SPREAD, ADS_STATIONARY_CROUCHING_SPREAD, ADS_STATIONARY_PRONE_SPREAD, ADS_MOVING_STANDING_SPREAD, ADS_MOVING_CROUCHING_SPREAD, ADS_MOVING_PRONE_SPREAD, HIP_STATIONARY_STANDING_SPREAD, HIP_STATIONARY_CROUCHING_SPREAD, HIP_STATIONARY_PRONE_SPREAD, HIP_MOVING_STANDING_SPREAD, HIP_MOVING_CROUCHING_SPREAD, HIP_MOVING_PRONE_SPREAD, SPREAD_INCREASE, SPREAD_DECREASE;
 	public boolean SNIPER;
+	public Double[] BIPOD, FLASH_SUPPRESSOR, FOREGRIP, HEAVY_BARREL, SUPPRESSOR;
+	public Double LASER_SIGHT, LASER_SIGHT_PRIMARY;
 	
-	public Weapon(String name, double max_damage, double min_damage, double damage_do_start, double damage_do_end, double rate_of_fire, double muzzle_velocity, double suppression, double recoil_up, double recoil_left, double recoil_right, double first_shot_multiplier, double recoil_decrease, double ads_stationary_standing_spread, double ads_stationary_crouching_spread, double ads_stationary_prone_spread, double ads_moving_standing_spread, double ads_moving_crouching_spread, double ads_moving_prone_spread, double hip_stationary_standing_spread, double hip_stationary_crouching_spread, double hip_stationary_prone_spread, double hip_moving_standing_spread, double hip_moving_crouching_spread, double hip_moving_prone_spread, double spread_increase, double spread_decrease, boolean sniper) {
+	public Weapon(String name, double max_damage, double min_damage, double damage_do_start, double damage_do_end, double rate_of_fire, double muzzle_velocity, double suppression, double recoil_up, double recoil_left, double recoil_right, double first_shot_multiplier, double recoil_decrease, double ads_stationary_standing_spread, double ads_stationary_crouching_spread, double ads_stationary_prone_spread, double ads_moving_standing_spread, double ads_moving_crouching_spread, double ads_moving_prone_spread, double hip_stationary_standing_spread, double hip_stationary_crouching_spread, double hip_stationary_prone_spread, double hip_moving_standing_spread, double hip_moving_crouching_spread, double hip_moving_prone_spread, double spread_increase, double spread_decrease, boolean sniper, Double[] bipod, Double[] flash_suppressor, Double[] foregrip, Double[] heavy_barrel, Double laser_sight, Double laser_sight_primary, Double[] suppressor) {
 		NAME = name;
 		MAX_DAMAGE = max_damage;
 		MIN_DAMAGE = min_damage;
@@ -36,93 +38,165 @@ final class Weapon {
 		SPREAD_INCREASE = spread_increase;
 		SPREAD_DECREASE = spread_decrease;
 		SNIPER = sniper;
+		BIPOD = bipod; 
+		FLASH_SUPPRESSOR = flash_suppressor; 
+		FOREGRIP = foregrip; 
+		HEAVY_BARREL = heavy_barrel; 
+		LASER_SIGHT = laser_sight; 
+		LASER_SIGHT_PRIMARY = laser_sight_primary; 
+		SUPPRESSOR = suppressor;
+	}
+	public Weapon(Weapon weapon) {
+		NAME = weapon.NAME;
+		MAX_DAMAGE = weapon.MAX_DAMAGE;
+		MIN_DAMAGE = weapon.MIN_DAMAGE;
+		DAMAGE_DO_START = weapon.DAMAGE_DO_START;
+		DAMAGE_DO_END = weapon.DAMAGE_DO_END;
+		RATE_OF_FIRE = weapon.RATE_OF_FIRE;
+		MUZZLE_VELOCITY = weapon.MUZZLE_VELOCITY;
+		SUPPRESSION = weapon.SUPPRESSION;
+		RECOIL_UP = weapon.RECOIL_UP;
+		RECOIL_LEFT = weapon.RECOIL_LEFT;
+		RECOIL_RIGHT = weapon.RECOIL_RIGHT;
+		FIRST_SHOT_MULTIPLIER = weapon.FIRST_SHOT_MULTIPLIER;
+		RECOIL_DECREASE = weapon.RECOIL_DECREASE;
+		ADS_STATIONARY_STANDING_SPREAD = weapon.ADS_STATIONARY_STANDING_SPREAD;
+		ADS_STATIONARY_CROUCHING_SPREAD = weapon.ADS_STATIONARY_CROUCHING_SPREAD;
+		ADS_STATIONARY_PRONE_SPREAD = weapon.ADS_STATIONARY_PRONE_SPREAD;
+		ADS_MOVING_STANDING_SPREAD = weapon.ADS_MOVING_STANDING_SPREAD;
+		ADS_MOVING_CROUCHING_SPREAD = weapon.ADS_MOVING_CROUCHING_SPREAD;
+		ADS_MOVING_PRONE_SPREAD = weapon.ADS_MOVING_PRONE_SPREAD;
+		HIP_STATIONARY_STANDING_SPREAD = weapon.HIP_STATIONARY_STANDING_SPREAD;
+		HIP_STATIONARY_CROUCHING_SPREAD = weapon.HIP_STATIONARY_CROUCHING_SPREAD;
+		HIP_STATIONARY_PRONE_SPREAD = weapon.HIP_STATIONARY_PRONE_SPREAD;
+		HIP_MOVING_STANDING_SPREAD = weapon.HIP_MOVING_STANDING_SPREAD;
+		HIP_MOVING_CROUCHING_SPREAD = weapon.HIP_MOVING_CROUCHING_SPREAD;
+		HIP_MOVING_PRONE_SPREAD = weapon.HIP_MOVING_PRONE_SPREAD;
+		SPREAD_INCREASE = weapon.SPREAD_INCREASE;
+		SPREAD_DECREASE = weapon.SPREAD_DECREASE;
+		SNIPER = weapon.SNIPER;
+		BIPOD = weapon.BIPOD; 
+		FLASH_SUPPRESSOR = weapon.FLASH_SUPPRESSOR; 
+		FOREGRIP = weapon.FOREGRIP; 
+		HEAVY_BARREL = weapon.HEAVY_BARREL; 
+		LASER_SIGHT = weapon.LASER_SIGHT; 
+		LASER_SIGHT_PRIMARY = weapon.LASER_SIGHT_PRIMARY; 
+		SUPPRESSOR = weapon.SUPPRESSOR;
+	}
+	public Weapon(Weapon weapon, String attachment) {
+		this(weapon);
+		attach(attachment);
+	}
+	public Weapon(Weapon weapon, String primaryAttachment, String secondaryAttachment) {
+		this(weapon);
+		attach(primaryAttachment, secondaryAttachment);
 	}
 	
-	public void attach(String attachment, double... modifiers) { //An array can be passed for varargs
-		if (attachment.equals("Bipod")) {
-			RECOIL_UP *= modifiers[0];
-			RECOIL_LEFT *= modifiers[1];
-			RECOIL_RIGHT *= modifiers[1];
-			ADS_STATIONARY_STANDING_SPREAD = modifiers[2];
-			ADS_STATIONARY_CROUCHING_SPREAD = modifiers[2];
-			ADS_STATIONARY_PRONE_SPREAD = modifiers[2];
-			ADS_MOVING_STANDING_SPREAD = modifiers[2];
-			ADS_MOVING_CROUCHING_SPREAD = modifiers[2];
-			ADS_MOVING_PRONE_SPREAD = modifiers[2];
-			HIP_STATIONARY_STANDING_SPREAD = modifiers[3];
-			HIP_STATIONARY_CROUCHING_SPREAD = modifiers[3];
-			HIP_STATIONARY_PRONE_SPREAD = modifiers[3];
-			HIP_MOVING_STANDING_SPREAD = modifiers[3];
-			HIP_MOVING_CROUCHING_SPREAD = modifiers[3];
-			HIP_MOVING_PRONE_SPREAD = modifiers[3];
+	public void attach(String attachment) {
+		if (attachment.equals("Bipod") && (BIPOD != null)) {
+			RECOIL_UP *= BIPOD[0];
+			if (BIPOD[1] != null) {
+				RECOIL_LEFT *= BIPOD[1];
+				RECOIL_RIGHT *= BIPOD[1];
+			}
+			if (BIPOD[2] != null) {
+				ADS_STATIONARY_STANDING_SPREAD *= BIPOD[2];
+				ADS_STATIONARY_CROUCHING_SPREAD *= BIPOD[2];
+				ADS_STATIONARY_PRONE_SPREAD *= BIPOD[2];
+				ADS_MOVING_STANDING_SPREAD *= BIPOD[2];
+				ADS_MOVING_CROUCHING_SPREAD *= BIPOD[2];
+				ADS_MOVING_PRONE_SPREAD *= BIPOD[2];
+			}
+			if (BIPOD[3] != null) {
+				HIP_STATIONARY_STANDING_SPREAD *= BIPOD[3];
+				HIP_STATIONARY_CROUCHING_SPREAD *= BIPOD[3];
+				HIP_STATIONARY_PRONE_SPREAD *= BIPOD[3];
+				HIP_MOVING_STANDING_SPREAD *= BIPOD[3];
+				HIP_MOVING_CROUCHING_SPREAD *= BIPOD[3];
+				HIP_MOVING_PRONE_SPREAD *= BIPOD[3];
+			}
 		}
-		if (attachment.equals("Flash Suppressor")) {
-			RECOIL_UP *= modifiers[0];
-			HIP_STATIONARY_STANDING_SPREAD = modifiers[1];
-			HIP_STATIONARY_CROUCHING_SPREAD = modifiers[1];
-			HIP_STATIONARY_PRONE_SPREAD = modifiers[1];
-			HIP_MOVING_STANDING_SPREAD = modifiers[1];
-			HIP_MOVING_CROUCHING_SPREAD = modifiers[1];
-			HIP_MOVING_PRONE_SPREAD = modifiers[1];
+		if (attachment.equals("Flash Suppressor") && (FLASH_SUPPRESSOR != null)) {
+			RECOIL_UP *= FLASH_SUPPRESSOR[0];
+			if (FLASH_SUPPRESSOR != null) {
+				HIP_STATIONARY_STANDING_SPREAD *= FLASH_SUPPRESSOR[1];
+				HIP_STATIONARY_CROUCHING_SPREAD *= FLASH_SUPPRESSOR[1];
+				HIP_STATIONARY_PRONE_SPREAD *= FLASH_SUPPRESSOR[1];
+				HIP_MOVING_STANDING_SPREAD *= FLASH_SUPPRESSOR[1];
+				HIP_MOVING_CROUCHING_SPREAD *= FLASH_SUPPRESSOR[1];
+				HIP_MOVING_PRONE_SPREAD *= FLASH_SUPPRESSOR[1];
+			}
 		}
-		if (attachment.equals("Foregrip")) {
-			RECOIL_UP *= modifiers[0];
-			RECOIL_LEFT *= modifiers[1];
-			RECOIL_RIGHT *= modifiers[1];
-			ADS_STATIONARY_STANDING_SPREAD = modifiers[2];
-			ADS_STATIONARY_CROUCHING_SPREAD = modifiers[2];
-			ADS_STATIONARY_PRONE_SPREAD = modifiers[2];
-			ADS_MOVING_STANDING_SPREAD = modifiers[2];
-			ADS_MOVING_CROUCHING_SPREAD = modifiers[2];
-			ADS_MOVING_PRONE_SPREAD = modifiers[2];
+		if (attachment.equals("Foregrip") && (FOREGRIP != null)) {
+			if (FOREGRIP[0] != null) {RECOIL_UP *= FOREGRIP[0];}
+			RECOIL_LEFT *= FOREGRIP[1];
+			RECOIL_RIGHT *= FOREGRIP[1];
+			ADS_STATIONARY_STANDING_SPREAD *= FOREGRIP[2];
+			ADS_STATIONARY_CROUCHING_SPREAD *= FOREGRIP[2];
+			ADS_STATIONARY_PRONE_SPREAD *= FOREGRIP[2];
+			ADS_MOVING_STANDING_SPREAD *= FOREGRIP[2];
+			ADS_MOVING_CROUCHING_SPREAD *= FOREGRIP[2];
+			ADS_MOVING_PRONE_SPREAD *= FOREGRIP[2];
 		}
-		if (attachment.equals("Heavy Barrel")) {
-			if (modifiers[0] != 0) {DAMAGE_DO_END = modifiers[0];}
-			if (modifiers[1] != 0) {MUZZLE_VELOCITY = modifiers[1];}
-			RECOIL_UP *= modifiers[2];
-			ADS_STATIONARY_STANDING_SPREAD = modifiers[3];
-			ADS_STATIONARY_CROUCHING_SPREAD = modifiers[3];
-			ADS_STATIONARY_PRONE_SPREAD = modifiers[3];
-			ADS_MOVING_STANDING_SPREAD = modifiers[3];
-			ADS_MOVING_CROUCHING_SPREAD = modifiers[3];
-			ADS_MOVING_PRONE_SPREAD = modifiers[3];
-			HIP_STATIONARY_STANDING_SPREAD = modifiers[4];
-			HIP_STATIONARY_CROUCHING_SPREAD = modifiers[4];
-			HIP_STATIONARY_PRONE_SPREAD = modifiers[4];
-			HIP_MOVING_STANDING_SPREAD = modifiers[4];
-			HIP_MOVING_CROUCHING_SPREAD = modifiers[4];
-			HIP_MOVING_PRONE_SPREAD = modifiers[4];
+		if (attachment.equals("Heavy Barrel") && (HEAVY_BARREL != null)) {
+			if (HEAVY_BARREL[0] != null) {DAMAGE_DO_END = HEAVY_BARREL[0];}
+			if (HEAVY_BARREL[1] != null) {MUZZLE_VELOCITY = HEAVY_BARREL[1];}
+			RECOIL_UP *= HEAVY_BARREL[2];
+			ADS_STATIONARY_STANDING_SPREAD *= HEAVY_BARREL[3];
+			ADS_STATIONARY_CROUCHING_SPREAD *= HEAVY_BARREL[3];
+			ADS_STATIONARY_PRONE_SPREAD *= HEAVY_BARREL[3];
+			ADS_MOVING_STANDING_SPREAD *= HEAVY_BARREL[3];
+			ADS_MOVING_CROUCHING_SPREAD *= HEAVY_BARREL[3];
+			ADS_MOVING_PRONE_SPREAD *= HEAVY_BARREL[3];
+			HIP_STATIONARY_STANDING_SPREAD *= HEAVY_BARREL[4];
+			HIP_STATIONARY_CROUCHING_SPREAD *= HEAVY_BARREL[4];
+			HIP_STATIONARY_PRONE_SPREAD *= HEAVY_BARREL[4];
+			HIP_MOVING_STANDING_SPREAD *= HEAVY_BARREL[4];
+			HIP_MOVING_CROUCHING_SPREAD *= HEAVY_BARREL[4];
+			HIP_MOVING_PRONE_SPREAD *= HEAVY_BARREL[4];
 		}
-		if (attachment.equals("Laser Sight") || attachment.equals("Laser Sight (Primary)")) {
-			HIP_STATIONARY_STANDING_SPREAD = modifiers[0];
-			HIP_STATIONARY_CROUCHING_SPREAD = modifiers[0];
-			HIP_STATIONARY_PRONE_SPREAD = modifiers[0];
-			HIP_MOVING_STANDING_SPREAD = modifiers[0];
-			HIP_MOVING_CROUCHING_SPREAD = modifiers[0];
-			HIP_MOVING_PRONE_SPREAD = modifiers[0];
+		if (attachment.equals("Laser Sight") && (LASER_SIGHT != null)) {
+			HIP_STATIONARY_STANDING_SPREAD *= LASER_SIGHT;
+			HIP_STATIONARY_CROUCHING_SPREAD *= LASER_SIGHT;
+			HIP_STATIONARY_PRONE_SPREAD *= LASER_SIGHT;
+			HIP_MOVING_STANDING_SPREAD *= LASER_SIGHT;
+			HIP_MOVING_CROUCHING_SPREAD *= LASER_SIGHT;
+			HIP_MOVING_PRONE_SPREAD *= LASER_SIGHT;
 		}
-		if (attachment.equals("Suppressor")) {
-			DAMAGE_DO_START = modifiers[0];
-			DAMAGE_DO_END = modifiers[1];
-			if (modifiers[2] != 0) {MUZZLE_VELOCITY = modifiers[2];}
-			RECOIL_UP *= modifiers[3];
-			ADS_STATIONARY_STANDING_SPREAD = modifiers[4];
-			ADS_STATIONARY_CROUCHING_SPREAD = modifiers[4];
-			ADS_STATIONARY_PRONE_SPREAD = modifiers[4];
-			ADS_MOVING_STANDING_SPREAD = modifiers[4];
-			ADS_MOVING_CROUCHING_SPREAD = modifiers[4];
-			ADS_MOVING_PRONE_SPREAD = modifiers[4];
-			HIP_STATIONARY_STANDING_SPREAD = modifiers[5];
-			HIP_STATIONARY_CROUCHING_SPREAD = modifiers[5];
-			HIP_STATIONARY_PRONE_SPREAD = modifiers[5];
-			HIP_MOVING_STANDING_SPREAD = modifiers[5];
-			HIP_MOVING_CROUCHING_SPREAD = modifiers[5];
-			HIP_MOVING_PRONE_SPREAD = modifiers[5];
+		if (attachment.equals("Laser Sight (Primary)") && (LASER_SIGHT != null)) {
+			HIP_STATIONARY_STANDING_SPREAD *= LASER_SIGHT_PRIMARY;
+			HIP_STATIONARY_CROUCHING_SPREAD *= LASER_SIGHT_PRIMARY;
+			HIP_STATIONARY_PRONE_SPREAD *= LASER_SIGHT_PRIMARY;
+			HIP_MOVING_STANDING_SPREAD *= LASER_SIGHT_PRIMARY;
+			HIP_MOVING_CROUCHING_SPREAD *= LASER_SIGHT_PRIMARY;
+			HIP_MOVING_PRONE_SPREAD *= LASER_SIGHT_PRIMARY;
+		}
+		if (attachment.equals("Suppressor") && (SUPPRESSOR != null)) {
+			DAMAGE_DO_START = SUPPRESSOR[0];
+			DAMAGE_DO_END = SUPPRESSOR[1];
+			if (SUPPRESSOR[2] != null) {MUZZLE_VELOCITY = SUPPRESSOR[2];}
+			RECOIL_UP *= SUPPRESSOR[3];
+			if (SUPPRESSOR[4] != null) {
+				ADS_STATIONARY_STANDING_SPREAD *= SUPPRESSOR[4];
+				ADS_STATIONARY_CROUCHING_SPREAD *= SUPPRESSOR[4];
+				ADS_STATIONARY_PRONE_SPREAD *= SUPPRESSOR[4];
+				ADS_MOVING_STANDING_SPREAD *= SUPPRESSOR[4];
+				ADS_MOVING_CROUCHING_SPREAD *= SUPPRESSOR[4];
+				ADS_MOVING_PRONE_SPREAD *= SUPPRESSOR[4];
+			}
+			if (SUPPRESSOR[5] != null) {
+				HIP_STATIONARY_STANDING_SPREAD *= SUPPRESSOR[5];
+				HIP_STATIONARY_CROUCHING_SPREAD *= SUPPRESSOR[5];
+				HIP_STATIONARY_PRONE_SPREAD *= SUPPRESSOR[5];
+				HIP_MOVING_STANDING_SPREAD *= SUPPRESSOR[5];
+				HIP_MOVING_CROUCHING_SPREAD *= SUPPRESSOR[5];
+				HIP_MOVING_PRONE_SPREAD *= SUPPRESSOR[5];
+			}
 		}
 	}
-	public void attach(String primaryAttachment, double[] primaryAttachmentModifiers, String secondaryAttachment, double[] secondaryAttachmentModifiers) {
-		attach(primaryAttachment, primaryAttachmentModifiers);
-		attach(secondaryAttachment, secondaryAttachmentModifiers);
+	public void attach(String primaryAttachment, String secondaryAttachment) {
+		attach(primaryAttachment);
+		attach(secondaryAttachment);
 	}
 	
 	public double damage(double distance) {

@@ -6,9 +6,9 @@ public class Battlefield3WeaponComparison {
 	public static void main(String[] args) {
 		//Weapons
 		HashMap<String, Weapon> weapons = new HashMap<>(63, 1);
-		weapons.put(".44 Magnum", new Weapon(".44 Magnum", 60, 30, 12, 50, 160, 460, 15, 2, 0.2, 0.2, 1, 4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1, 1, 1, 2, 1, 1, 0.3, 15, false));
-		weapons.put("93R", new Weapon("93R", 20, 12.5, 8, 40, 900, 380, 7, 0.5, 0.2, 0.2, 1.5, 30, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.2, 15, false));
-		weapons.put("A-91", new Weapon("A-91", 25, 14.3, 8, 50, 800, 420, 7, 0.2, 0.5, 0.5, 3, 18, 0.4, 0.4, 0.4, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.1, 15, false));
+		weapons.put(".44 Magnum", new Weapon(".44 Magnum", 60, 30, 12, 50, 160, 460, 15, 2, 0.2, 0.2, 1, 4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1, 1, 1, 2, 1, 1, 0.3, 15, false, null, null, null, null, null, null, null));
+		weapons.put("93R", new Weapon("93R", 20, 12.5, 8, 40, 900, 380, 7, 0.5, 0.2, 0.2, 1.5, 30, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.2, 15, false, null, null, null, null, null, null, null));
+		weapons.put("A-91", new Weapon("A-91", 25, 14.3, 8, 50, 800, 420, 7, 0.2, 0.5, 0.5, 3, 18, 0.4, 0.4, 0.4, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.1, 15, false, null, new Double[] {0.75, 1.33}, new Double[] {null, 0.8, 1.25}, new Double[] {75, 560, 1.15, 0.25, 1.33}, 0.5, null, new Double[] {4, 35, 280, 0.9, 0.75, 1.67}));/*
 		weapons.put("ACW-R", new Weapon("ACW-R", 20, 16.7, 8, 50, 850, 500, 7, 0.2, 0.1, 0.3, 2.5, 18, 0.3, 0.3, 0.3, 0.9, 0.9, 1, 2.25, 2, 1.5, 2.75, 2.5, 1.75, 0.1, 15, false));
 		weapons.put("AEK-971", new Weapon("AEK-971", 25, 18.4, 8, 50, 900, 580, 7, 0.2, 0.5, 0.3, 3, 18, 0.3, 0.3, 0.3, 1, 1, 1, 2.5, 2, 1.5, 3, 2.5, 2, 0.1, 15, false));
 		weapons.put("AK-74M", new Weapon("AK-74M", 25, 18.4, 8, 50, 650, 600, 7, 0.28, 0.2, 0.3, 1.5, 18, 0.2, 0.2, 0.2, 1, 1, 1, 2.5, 2, 1.5, 3, 2.5, 2, 0.1, 15, false));
@@ -67,29 +67,7 @@ public class Battlefield3WeaponComparison {
 		weapons.put("SV-98", new Weapon("SV-98", 80, 50, 20, 80, 48, 520, 35, 2, 0, 0, 1, 15, 0, 0, 0, 1.5, 1, 1, 3.5, 3, 2.5, 4.5, 4, 3.5, 1.2, 15, true));
 		weapons.put("SVD", new Weapon("SVD", 50, 37.5, 15, 75, 260, 530, 20, 1.5, -0.1, 0.3, 1, 6, 0.0167, 0.0167, 0.0167, 1.5, 1, 1, 3.5, 3, 2.5, 4.5, 4, 3.5, 0.8, 15, true));
 		weapons.put("Type 88 LMG", new Weapon("Type 88 LMG", 25, 18.4, 8, 50, 650, 600, 7, 0.36, 0.3, 0.3, 1.5, 12, 0.5, 0.4, 0.2, 1.5, 1, 1, 5, 4, 3, 6, 5, 4, 0.1, 15, false));
-		weapons.put("UMP45", new Weapon("UMP45", 34, 12.5, 8, 40, 600, 320, 7, 0.25, 0.2, 0.2, 2.75, 20, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1.5, 1.25, 1.25, 0.06, 15, false)); //Every weapon seems to have a spread decrease of 15.
-		
-		//Weapon Attachments
-		HashMap<String, HashMap<String, double[]>> weaponAttachments = new HashMap<>(63, 1);
-		String[] attachments = new String[] {"Bipod", "Flash Suppressor", "Foregrip", "Heavy Barrel", "Laser Sight", "Laser Sight (Primary)", "Suppressor"};
-		HashMap<String, double[]> _44MagnumAttachments = new HashMap<>(8, 1);
-		for (String attachment : attachments) {_44MagnumAttachments.put(attachment, null);} //If done like this, then the weapon cannot be equipped with attachments.
-		weaponAttachments.put(".44 Magnum", _44MagnumAttachments);
-		_44MagnumAttachments = null; //Dereference so that the garbage collector can clean the object up
-		HashMap<String, double[]> _93RAttachments = new HashMap<>(8, 1);
-		for (String attachment : attachments) {_93RAttachments.put(attachment, null);}
-		weaponAttachments.put("93R", _93RAttachments);
-		_93RAttachments = null;
-		HashMap<String, double[]> A91Attachments = new HashMap<>(8, 1);
-		A91Attachments.put("Bipod", null); //Apparently, there's data for A-91's bipod despite being unusable in-game.
-		A91Attachments.put("Flash Suppressor", new double[] {0.75, 1.33});
-		A91Attachments.put("Foregrip", new double[] {1, 0.8, 1.25});
-		A91Attachments.put("Heavy Barrel", new double[] {75, 560, 1.15, 0.25, 1.33});
-		A91Attachments.put("Laser Sight", new double[] {0.5});
-		A91Attachments.put("Laser Sight (Primary)", null);
-		A91Attachments.put("Suppressor", new double[] {4, 35, 280, 0.9, 0.75, 1.67});
-		weaponAttachments.put("A-91", A91Attachments);
-		A91Attachments = null;
+		weapons.put("UMP45", new Weapon("UMP45", 34, 12.5, 8, 40, 600, 320, 7, 0.25, 0.2, 0.2, 2.75, 20, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1.5, 1.25, 1.25, 0.06, 15, false)); //Every weapon seems to have a spread decrease of 15.*/
 		
 		//
 		Weapon weapon1 = weapons.get("M416");
