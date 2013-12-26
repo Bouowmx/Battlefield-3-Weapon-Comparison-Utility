@@ -1,10 +1,12 @@
 package Battlefield3WeaponComparison;
 
+import static java.lang.System.nanoTime;
 import java.util.HashMap;
 
 public class Battlefield3WeaponComparison {
 	public static void main(String[] args) {
-		//Weapons
+		long t1 = nanoTime();
+		//Initalize data:
 		HashMap<String, Weapon> weapons = new HashMap<>(63, 1); //62 weapons but 63 slots, to avoid rehashing with loading factor 1.
 		weapons.put(".44 Magnum", new Weapon(".44 Magnum", 60, 30, 12, 50, 160, 460, 15, 2, 0.2, 0.2, 1, 4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1, 1, 1, 2, 1, 1, 0.3, 15, false, null, null, null, null, -1, -1, null));
 		weapons.put("93R", new Weapon("93R", 20, 12.5, 8, 40, 900, 380, 7, 0.5, 0.2, 0.2, 1.5, 30, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.2, 15, false, null, null, null, null, -1, -1, null));
@@ -69,10 +71,23 @@ public class Battlefield3WeaponComparison {
 		weapons.put("Type 88 LMG", new Weapon("Type 88 LMG", 25, 18.4, 8, 50, 650, 600, 7, 0.36, 0.3, 0.3, 1.5, 12, 0.5, 0.4, 0.2, 1.5, 1, 1, 5, 4, 3, 6, 5, 4, 0.1, 15, false, new double[] {0.1, 0.4, 0.16, 0.03}, new double[] {0.9, 1}, new double[] {1, 0.67, 1.2}, null, 0.5, -1, new double[] {4, 35, 380, 0.9, 0.75, 1}));
 		weapons.put("UMP45", new Weapon("UMP45", 34, 12.5, 8, 40, 600, 320, 7, 0.25, 0.2, 0.2, 2.75, 20, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1.5, 1.25, 1.25, 0.06, 15, false, null, new double[] {0.8, 1.25}, null, null, -1, 0.5, new double[] {4, 32, -1, 0.9, 0.8, 1.5})); //Every weapon seems to have a spread decrease of 15.
 		
-		//
-		Weapon weapon1 = weapons.get("M416");
-		for (int i = 0; i <= 100; i++) {System.out.println(i + ": " + Round.roundToOnePlaceAndRemoveTrailingZero(weapon1.timeToKill(100, i)));}
-		System.out.println();
-		for (int i = (int) Math.ceil(100 / weapon1.MAX_DAMAGE); i <= Math.ceil(100 / weapon1.MIN_DAMAGE); i++) {System.out.println(i + ": " + Round.roundToOnePlaceAndRemoveTrailingZero(weapon1.hitKillDistance(100, i)));}
+		//Create window:
+		/* Set the Nimbus look and feel */
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+		 */
+		/*try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}*/
+		java.awt.EventQueue.invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
+		
+		//Benchmarking
+		long t2 = nanoTime();
+		System.out.println("\n" + (t2 - t1) + " ns / " + ((double) (t2 - t1) / 1000000) + " ms / " + ((double) (t2 - t1) / 1000000000) + " s");
 	}
 }
