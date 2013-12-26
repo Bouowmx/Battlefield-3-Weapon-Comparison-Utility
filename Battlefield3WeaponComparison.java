@@ -6,11 +6,11 @@ public class Battlefield3WeaponComparison {
 	public static void main(String[] args) {
 		//Weapons
 		HashMap<String, Weapon> weapons = new HashMap<>(63, 1);
-		weapons.put(".44 Magnum", new Weapon(".44 Magnum", 60, 30, 12, 50, 160, 460, 15, 2, 0.2, 0.2, 1, 4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1, 1, 1, 2, 1, 1, 0.3, 15, false, null, null, null, null, null, null, null));
-		weapons.put("93R", new Weapon("93R", 20, 12.5, 8, 40, 900, 380, 7, 0.5, 0.2, 0.2, 1.5, 30, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.2, 15, false, null, null, null, null, null, null, null));
-		weapons.put("A-91", new Weapon("A-91", 25, 14.3, 8, 50, 800, 420, 7, 0.2, 0.5, 0.5, 3, 18, 0.4, 0.4, 0.4, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.1, 15, false, null, new Double[] {0.75, 1.33}, new Double[] {null, 0.8, 1.25}, new Double[] {75, 560, 1.15, 0.25, 1.33}, 0.5, null, new Double[] {4, 35, 280, 0.9, 0.75, 1.67}));/*
-		weapons.put("ACW-R", new Weapon("ACW-R", 20, 16.7, 8, 50, 850, 500, 7, 0.2, 0.1, 0.3, 2.5, 18, 0.3, 0.3, 0.3, 0.9, 0.9, 1, 2.25, 2, 1.5, 2.75, 2.5, 1.75, 0.1, 15, false));
-		weapons.put("AEK-971", new Weapon("AEK-971", 25, 18.4, 8, 50, 900, 580, 7, 0.2, 0.5, 0.3, 3, 18, 0.3, 0.3, 0.3, 1, 1, 1, 2.5, 2, 1.5, 3, 2.5, 2, 0.1, 15, false));
+		weapons.put(".44 Magnum", new Weapon(".44 Magnum", 60, 30, 12, 50, 160, 460, 15, 2, 0.2, 0.2, 1, 4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1, 1, 1, 2, 1, 1, 0.3, 15, false, null, null, null, null, -1, -1, null));
+		weapons.put("93R", new Weapon("93R", 20, 12.5, 8, 40, 900, 380, 7, 0.5, 0.2, 0.2, 1.5, 30, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.2, 15, false, null, null, null, null, -1, -1, null));
+		weapons.put("A-91", new Weapon("A-91", 25, 14.3, 8, 50, 800, 420, 7, 0.2, 0.5, 0.5, 3, 18, 0.4, 0.4, 0.4, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.1, 15, false, null, new double[] {0.75, 1.33}, new double[] {-1, 0.8, 1.25}, new double[] {75, 560, 1.15, 0.25, 1.33}, 0.5, -1, new double[] {4, 35, 280, 0.9, 0.75, 1.67})); //Apparently, there's data for the A-91 bipod, despite being unavailable for use in-game.
+		weapons.put("ACW-R", new Weapon("ACW-R", 20, 16.7, 8, 50, 850, 500, 7, 0.2, 0.1, 0.3, 2.5, 18, 0.3, 0.3, 0.3, 0.9, 0.9, 1, 2.25, 2, 1.5, 2.75, 2.5, 1.75, 0.1, 15, false, new double[] {0.25, 0.67, 0.5, 0.5}, new double[] {0.75, 1.23}, new double[] {-1, 0.67, 1.34}, new double[] {75, 650, 1.18, 0.35, 1.3}, 0.5, -1, new double[] {4, 35, 300, 0.85, 0.75, 1.34}));
+		weapons.put("AEK-971", new Weapon("AEK-971", 25, 18.4, 8, 50, 900, 580, 7, 0.2, 0.5, 0.3, 3, 18, 0.3, 0.3, 0.3, 1, 1, 1, 2.5, 2, 1.5, 3, 2.5, 2, 0.1, 15, false, new double[] {0.25, 0.5, 0.25, 0.134}, new double[] {0.75, 1.2}, new double[] {-1, 0.75, 1.34}, new double[] {65, -1, 1.15, 0.25, 1.2}, 0.5, -1, new double[] {4, 35, 320, 0.9, 0.75, 1.4}));/*
 		weapons.put("AK-74M", new Weapon("AK-74M", 25, 18.4, 8, 50, 650, 600, 7, 0.28, 0.2, 0.3, 1.5, 18, 0.2, 0.2, 0.2, 1, 1, 1, 2.5, 2, 1.5, 3, 2.5, 2, 0.1, 15, false));
 		weapons.put("AKS-74U", new Weapon("AKS-74U", 25, 14.3, 8, 50, 650, 440, 7, 0.28, 0.2, 0.3, 1.5, 18, 0.4, 0.4, 0.4, 0.8, 0.8, 0.8, 2, 1.5, 1, 2.5, 2, 1.5, 0.1, 15, false));
 		weapons.put("AN-94", new Weapon("AN-94", 25, 18.4, 8, 50, 600, 600, 7, 0.3, 0.2, 0.3, 1.5, 18, 0.2, 0.2, 0.2, 1, 1, 1, 2.5, 2, 1.5, 3, 2.5, 2, 0.1, 15, false));
