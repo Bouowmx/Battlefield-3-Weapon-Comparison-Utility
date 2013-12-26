@@ -1,7 +1,9 @@
 package Battlefield3WeaponComparison;
 
+import static java.awt.EventQueue.invokeLater;
 import static java.lang.System.nanoTime;
 import java.util.HashMap;
+import javax.swing.UIManager;
 
 public class Battlefield3WeaponComparison {
 	public static void main(String[] args) {
@@ -76,15 +78,18 @@ public class Battlefield3WeaponComparison {
 		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
-		/*try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
+		try {
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				//Use the following for the "Nimbus" look and feel (L&F):
+				/*if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
-				}
+				}*/
+				//Use the following for the "System" (Windows/Mac/Linux/etc.) L&F:
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			}
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}*/
-		java.awt.EventQueue.invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}
+		invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
 		
 		//Benchmarking
 		long t2 = nanoTime();
