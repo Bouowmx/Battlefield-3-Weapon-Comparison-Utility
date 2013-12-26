@@ -79,15 +79,15 @@ public class Battlefield3WeaponComparison {
 		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
 		try {
-			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				//Use the following for the "Nimbus" look and feel (L&F):
-				/*if ("Nimbus".equals(info.getName())) {
+			//Use the following for the "Nimbus" look and feel (L&F):
+			/*for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
-				}*/
-				//Use the following for the "System" (Windows/Mac/Linux/etc.) L&F:
-				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			}
+				}
+			}*/
+			//Use the following for the "System" (Windows/Mac/Linux/etc.) L&F:
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}
 		invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
 		
