@@ -88,7 +88,7 @@ public class Battlefield3WeaponComparison {
 			}*/
 			//Use the following for the "System" (Windows/Mac/Linux/etc.) L&F:
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}
 		invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
 		
 		//Benchmarking
