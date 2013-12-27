@@ -91,6 +91,6 @@ public class Battlefield3WeaponComparison {
 		
 		//Benchmarking
 		long t2 = nanoTime();
-		System.out.println("\n" + (t2 - t1) + " ns / " + ((double) (t2 - t1) / 1000000) + " ms / " + ((double) (t2 - t1) / 1000000000) + " s");
+		System.out.println("Initialization time: " + (t2 - t1) + " ns / " + ((double) (t2 - t1) / 1000000) + " ms / " + ((double) (t2 - t1) / 1000000000) + " s");
 	}
 }
