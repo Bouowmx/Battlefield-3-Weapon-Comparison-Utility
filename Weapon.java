@@ -1,5 +1,3 @@
-package Battlefield3WeaponComparison;
-
 import static java.lang.Math.ceil;
 
 final class Weapon {

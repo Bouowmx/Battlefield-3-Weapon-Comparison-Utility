@@ -1,5 +1,3 @@
-package Battlefield3WeaponComparison;
-
 import java.math.BigDecimal;
 
 public class Round {
