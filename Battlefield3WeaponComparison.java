@@ -1,13 +1,11 @@
-import static java.awt.EventQueue.invokeLater;
 import static java.lang.System.nanoTime;
 import java.util.HashMap;
 import javax.swing.UIManager;
 
 public class Battlefield3WeaponComparison {
-	public static void main(String[] args) {
-		long t1 = nanoTime();
-		//Initalize data:
-		HashMap<String, Weapon> weapons = new HashMap<>(63, 1); //62 weapons but 63 slots, to avoid rehashing with loading factor 1.
+	public static HashMap<String, Weapon> weapons;
+	public static void initializeData() {
+		weapons = new HashMap<>(63, 1); //62 weapons but 63 slots, to avoid rehashing with loading factor 1.
 		weapons.put(".44 Magnum", new Weapon(".44 Magnum", 60, 30, 12, 50, 160, 460, 15, 2, 0.2, 0.2, 1, 4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 1, 1, 1, 2, 1, 1, 0.3, 15, false, null, null, null, null, -1, -1, null));
 		weapons.put("93R", new Weapon("93R", 20, 12.5, 8, 40, 900, 380, 7, 0.5, 0.2, 0.2, 1.5, 30, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.2, 15, false, null, null, null, null, -1, -1, null));
 		weapons.put("A-91", new Weapon("A-91", 25, 14.3, 8, 50, 800, 420, 7, 0.2, 0.5, 0.5, 3, 18, 0.4, 0.4, 0.4, 0.8, 0.8, 0.8, 1.5, 1, 1, 2, 1.5, 1.5, 0.1, 15, false, null, new double[] {0.75, 1.33}, new double[] {1, 0.8, 1.25}, new double[] {75, 560, 1.15, 0.25, 1.33}, 0.5, -1, new double[] {4, 35, 280, 0.9, 0.75, 1.67})); //Apparently, there's data for the A-91 bipod, despite being unavailable for use in-game.
@@ -70,7 +68,11 @@ public class Battlefield3WeaponComparison {
 		weapons.put("SVD", new Weapon("SVD", 50, 37.5, 15, 75, 260, 530, 20, 1.5, -0.1, 0.3, 1, 6, 0.0167, 0.0167, 0.0167, 1.5, 1, 1, 3.5, 3, 2.5, 4.5, 4, 3.5, 0.8, 15, true, new double[] {0.2, 1, 1, 1}, null, new double[] {0.67, 0.67, 2}, null, 0.5, -1, new double[] {6, 35, 310, 0.9, 0.75, 1.285}));
 		weapons.put("Type 88 LMG", new Weapon("Type 88 LMG", 25, 18.4, 8, 50, 650, 600, 7, 0.36, 0.3, 0.3, 1.5, 12, 0.5, 0.4, 0.2, 1.5, 1, 1, 5, 4, 3, 6, 5, 4, 0.1, 15, false, new double[] {0.1, 0.4, 0.16, 0.03}, new double[] {0.9, 1}, new double[] {1, 0.67, 1.2}, null, 0.5, -1, new double[] {4, 35, 380, 0.9, 0.75, 1}));
 		weapons.put("UMP45", new Weapon("UMP45", 34, 12.5, 8, 40, 600, 320, 7, 0.25, 0.2, 0.2, 2.75, 20, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1.5, 1.25, 1.25, 0.06, 15, false, null, new double[] {0.8, 1.25}, null, null, -1, 0.5, new double[] {4, 32, -1, 0.9, 0.8, 1.5})); //Every weapon seems to have a spread decrease of 15.
-		
+	}
+	public static void main(String[] args) {
+		long t1 = nanoTime();
+		initializeData();
+			
 		//Create window:
 		/* Set the Nimbus look and feel */
 		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -87,7 +89,7 @@ public class Battlefield3WeaponComparison {
 			//Use the following for the "System" (Windows/Mac/Linux/etc.) L&F:
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, e);}
-		invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
+		java.awt.EventQueue.invokeLater(new Runnable() {public void run() {new Window().setVisible(true);}});
 		
 		//Benchmarking
 		long t2 = nanoTime();
