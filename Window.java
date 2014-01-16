@@ -11,10 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Window extends JFrame {
 	public JButton compareButton;
+	public JComboBox<String> lookAndFeelComboBox;
 	public JComboBox<String> weapon1ComboBox;
 	public JComboBox<String> weapon1PrimaryAttachmentComboBox;
 	public JComboBox<String> weapon1SecondaryAttachmentComboBox;
@@ -22,15 +25,38 @@ public class Window extends JFrame {
 	public JComboBox<String> weapon2PrimaryAttachmentComboBox;
 	public JComboBox<String> weapon2SecondaryAttachmentComboBox;
 	public JLabel instructionsLabel;
+	public JLabel lookAndFeelLabel;
 	public JLabel notesLabel;
 	public JLabel weapon1Image;
-	public JLabel vsLabel;
 	public JLabel weapon2Image;
+	public JLabel vsLabel;
 	
 	public Window() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Battlefield 3 Weapon Comparison Utility");
 		setResizable(false);
+		
+		lookAndFeelLabel = new JLabel("Look and Feel:");
+		
+		UIManager.LookAndFeelInfo[] installedLookAndFeels = UIManager.getInstalledLookAndFeels();
+		HashMap<String, String> _lookAndFeels = new HashMap<>();
+		String[] installedLookAndFeelsNames = new String[installedLookAndFeels.length];
+		for (int i = 0; i < installedLookAndFeels.length; i++) {
+			_lookAndFeels.put(installedLookAndFeels[i].getName(), installedLookAndFeels[i].getClassName());
+			installedLookAndFeelsNames[i] = installedLookAndFeels[i].getName();
+		}
+		final HashMap<String, String> lookAndFeels = _lookAndFeels;
+		lookAndFeelComboBox = new JComboBox<>(installedLookAndFeelsNames);
+		lookAndFeelComboBox.setSelectedItem(UIManager.getLookAndFeel().getName());
+		lookAndFeelComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {UIManager.setLookAndFeel(lookAndFeels.get((String) lookAndFeelComboBox.getSelectedItem()));}
+				catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e2) {java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, e2);}
+				javax.swing.SwingUtilities.updateComponentTreeUI(Window.this);
+				pack();
+				setLocationRelativeTo(null);
+			}
+		});
 		
 		instructionsLabel = new JLabel("<html>Up to date with the Aftermath patch (December 4, 2012). There has been no change to the weapons since.<br><b><u>How to use:</u></b> Select two weapons and optionally, a primary attachment and a secondary attachment for each weapon, and click Compare.");
 		
@@ -69,7 +95,7 @@ public class Window extends JFrame {
 		weapon2ComboBox = new JComboBox<>(new String[] {"Weapon 2", ".44 Magnum", "93R", "A-91", "ACW-R", "AEK-971", "AK-74M", "AKS-74U", "AN-94", "AS Val", "AUG A3", "F2000", "FAMAS", "G17C", "G18", "G36C", "G3A3", "G53", "JNG-90", "KH2002", "L85A2", "L86A2", "L96", "LSAT", "M16A3", "M16A4", "M1911", "M240B", "M249", "M27 IAR", "M39 EMR", "M4", "M40A5", "M416", "M417", "M4A1", "M5K", "M60E4", "M9", "M98B", "MG36", "MK11 MOD 0", "MP412 REX", "MP443", "MP7", "MTAR-21", "P90", "PDW-R", "PKP Pecheneg", "PP-19", "PP-2000", "QBB-95", "QBU-88", "QBZ-95B", "RPK-74M", "SCAR-H", "SCAR-L", "SG553", "SKS", "SV-98", "SVD", "Type 88 LMG", "UMP45"});
 		weapon2ComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (weapon2ComboBox.getSelectedItem().equals("Weapon 1")) {
+				if (weapon2ComboBox.getSelectedItem().equals("Weapon 2")) {
 					weapon2PrimaryAttachmentComboBox.setModel(new DefaultComboBoxModel(new String[] {"None"}));
 					weapon2SecondaryAttachmentComboBox.setModel(new DefaultComboBoxModel(new String[] {"None"}));
 					return;
@@ -118,6 +144,10 @@ public class Window extends JFrame {
 			.addGroup(layout.createSequentialGroup()
 				.addContainerGap()
 				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+					.addGroup(layout.createSequentialGroup()
+                        .addComponent(lookAndFeelLabel)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(lookAndFeelComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addComponent(instructionsLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
 					.addComponent(notesLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
 					.addGroup(layout.createSequentialGroup()
@@ -146,6 +176,10 @@ public class Window extends JFrame {
 			layout.createParallelGroup(Alignment.LEADING)
 			.addGroup(layout.createSequentialGroup()
 				.addContainerGap()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(lookAndFeelComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lookAndFeelLabel))
+				.addPreferredGap(ComponentPlacement.RELATED)
 				.addComponent(instructionsLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
 				.addGap(12, 12, 12)
 				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
