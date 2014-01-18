@@ -2,7 +2,7 @@ import static java.lang.System.nanoTime;
 import java.util.HashMap;
 import javax.swing.UIManager;
 
-public class Battlefield3WeaponComparison {
+public final class Battlefield3WeaponComparison {
 	public static HashMap<String, Weapon> weapons;
 	
 	public static void main(String[] args) {
