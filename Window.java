@@ -1,9 +1,8 @@
-import static java.awt.Image.SCALE_SMOOTH;
 import static javax.swing.GroupLayout.Alignment;
 import static javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
@@ -14,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
@@ -179,11 +179,11 @@ public final class Window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (((weapon1ComboBox.getSelectedItem()).equals("Weapon 1")) || ((weapon2ComboBox.getSelectedItem()).equals("Weapon 2"))) {return;}
 				Weapon weapon1 = weapons.get((String) weapon1ComboBox.getSelectedItem()), weapon2 = weapons.get((String) weapon2ComboBox.getSelectedItem());
-				try {weapon1Image.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/images/weapons/" + (weapon1.NAME).replace('.', '\u0000') + ".png")).getScaledInstance((int) ((double) (getWidth() - 32) / 2), -1, SCALE_SMOOTH)));}
-				catch (IOException e2) {System.out.println("Exception");}
+				try {weapon1Image.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/images/weapons/" + (weapon1.NAME).replace('.', '\u0000') + ".png")).getScaledInstance((int) ((double) (getWidth() - 32) / 2), -1, Image.SCALE_SMOOTH)));}
+				catch (Exception e2) {JOptionPane.showMessageDialog(Window.this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e2), "Error", JOptionPane.ERROR_MESSAGE);}
 				weapon1Image.setText("<html><center>" + weapon1.NAME + "</center><b>Primary Attachment:</b> " + weapon1PrimaryAttachmentComboBox.getSelectedItem() + "<br><b>Secondary Attachment:</b> " + weapon1SecondaryAttachmentComboBox.getSelectedItem());
-				try {weapon2Image.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/images/weapons/" + (weapon2.NAME).replace('.', '\u0000') + ".png")).getScaledInstance((int) ((double) (getWidth() - 32) / 2), -1, SCALE_SMOOTH)));}
-				catch (IOException e2) {System.out.println("Exception");}
+				try {weapon2Image.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/images/weapons/" + (weapon2.NAME).replace('.', '\u0000') + ".png")).getScaledInstance((int) ((double) (getWidth() - 32) / 2), -1, Image.SCALE_SMOOTH)));}
+				catch (Exception e2) {JOptionPane.showMessageDialog(Window.this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e2), "Error", JOptionPane.ERROR_MESSAGE);}
 				weapon2Image.setText("<html><center>" + weapon2.NAME + "</center><b>Primary Attachment:</b> " + weapon2PrimaryAttachmentComboBox.getSelectedItem() + "<br><b>Secondary Attachment:</b> " + weapon2SecondaryAttachmentComboBox.getSelectedItem());
 				packAndCenter();
 			}
@@ -221,7 +221,7 @@ public final class Window extends JFrame {
 		themeComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {UIManager.setLookAndFeel(lookAndFeels.get((String) themeComboBox.getSelectedItem()));}
-				catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e2) {java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, e2);}
+				catch (Exception e2) {JOptionPane.showMessageDialog(Window.this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e2), "Error", JOptionPane.ERROR_MESSAGE);}
 				javax.swing.SwingUtilities.updateComponentTreeUI(Window.this);
 				packAndCenter();
 			}
