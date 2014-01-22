@@ -207,6 +207,10 @@ public final class Window extends JFrame {
 		    System.out.println(getWidth());
 		    long t2 = nanoTime();
 		    System.out.println("Compare time: " + (t2 - t1) + " ns / " + ((double) (t2 - t1) / 1000000) + " ms / " + ((double) (t2 - t1) / 1000000000) + " s");
+		    columnNames [1] = weapon1.NAME;
+		    columnNames [2] = weapon2.NAME; 
+		    data [0] [1] = weapon1.MAX_DAMAGE;
+		    data [0] [2] = weapon2.MAX_DAMAGE; 
 		}
 	    });
 		
@@ -258,13 +262,11 @@ public final class Window extends JFrame {
 	
 	String[] columnNames = {
 	    "Stat",
-	    "Name",
-	    "Name",
+	    "Weapon 1",
+	    "Weapon 2",
 	};
 
-	Object[][] data = {
-	    {"Max Damage", new double (weapon1ComboBox.getSelectedItem().MAX_DAMAGE), new double (weapon2ComboBox.getSelectedItem().MAX_DAMAGE)},
-	}
+	Object[][] data = {{"Max Damage"}}
 	
 	table = new JTable(data, columnNames);
 	JScrollPane scrollpane = new JScrollPane(table);
