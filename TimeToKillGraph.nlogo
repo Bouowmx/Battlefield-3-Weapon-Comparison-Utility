@@ -45,10 +45,10 @@ ticks
 30.0
 
 PLOT
-6
-10
-762
-377
+0
+0
+600
+300
 Time to Kill
 Distance (m)
 Time to Kill (ms)
