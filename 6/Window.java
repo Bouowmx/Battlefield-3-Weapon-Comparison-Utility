@@ -1,3 +1,4 @@
+import static java.lang.System.nanoTime;
 import static javax.swing.GroupLayout.Alignment;
 import static javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
@@ -17,9 +18,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
+import org.nlogo.lite.InterfaceComponent;
 
 public final class Window extends JFrame {
 	public static HashMap<String, Weapon> weapons;
+	public InterfaceComponent timeToKillGraph;
 	public JButton compareButton;
 	public JComboBox themeComboBox;
 	public JComboBox weapon1ComboBox;
@@ -177,19 +180,36 @@ public final class Window extends JFrame {
 		compareButton = new JButton("Compare");
 		compareButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				long t1 = nanoTime();
 				if (((weapon1ComboBox.getSelectedItem()).equals("Weapon 1")) || ((weapon2ComboBox.getSelectedItem()).equals("Weapon 2"))) {return;}
 				Weapon weapon1 = weapons.get((String) weapon1ComboBox.getSelectedItem()), weapon2 = weapons.get((String) weapon2ComboBox.getSelectedItem());
+				weapon1Image.setIcon(null);
+				weapon2Image.setIcon(null);
+				packAndCenter();
 				try {weapon1Image.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/images/weapons/" + (weapon1.NAME).replace('.', '\u0000') + ".png")).getScaledInstance((int) ((double) (getWidth() - 32) / 2), -1, Image.SCALE_SMOOTH)));}
-				catch (Exception e2) {JOptionPane.showMessageDialog(Window.this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e2), "Error", JOptionPane.ERROR_MESSAGE);}
+				catch (Exception e2) {showErrorMessage(e2);}
 				weapon1Image.setText("<html><center>" + weapon1.NAME + "</center><b>Primary Attachment:</b> " + weapon1PrimaryAttachmentComboBox.getSelectedItem() + "<br><b>Secondary Attachment:</b> " + weapon1SecondaryAttachmentComboBox.getSelectedItem());
 				try {weapon2Image.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/images/weapons/" + (weapon2.NAME).replace('.', '\u0000') + ".png")).getScaledInstance((int) ((double) (getWidth() - 32) / 2), -1, Image.SCALE_SMOOTH)));}
-				catch (Exception e2) {JOptionPane.showMessageDialog(Window.this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e2), "Error", JOptionPane.ERROR_MESSAGE);}
+				catch (Exception e2) {showErrorMessage(e2);}
 				weapon2Image.setText("<html><center>" + weapon2.NAME + "</center><b>Primary Attachment:</b> " + weapon2PrimaryAttachmentComboBox.getSelectedItem() + "<br><b>Secondary Attachment:</b> " + weapon2SecondaryAttachmentComboBox.getSelectedItem());
+				try {
+					timeToKillGraph.commandLater("clear-all");
+					timeToKillGraph.commandLater("set _color red");
+					timeToKillGraph.commandLater("graph \"" + weapon1.NAME + "\" " + weapon1.MAX_DAMAGE + " " + weapon1.MIN_DAMAGE + " " + weapon1.DAMAGE_DO_START + " " + weapon1.DAMAGE_DO_END + " " + weapon1.RATE_OF_FIRE + " " + weapon1.MUZZLE_VELOCITY);
+					timeToKillGraph.commandLater("set _color blue");
+					timeToKillGraph.commandLater("graph \"" + weapon2.NAME + "\" " + weapon2.MAX_DAMAGE + " " + weapon2.MIN_DAMAGE + " " + weapon2.DAMAGE_DO_START + " " + weapon2.DAMAGE_DO_END + " " + weapon2.RATE_OF_FIRE + " " + weapon2.MUZZLE_VELOCITY);
+				}
+				catch (Exception e2) {showErrorMessage(e2);}
 				packAndCenter();
+				System.out.println(getWidth());
+				long t2 = nanoTime();
+				System.out.println("Compare time: " + (t2 - t1) + " ns / " + ((double) (t2 - t1) / 1000000) + " ms / " + ((double) (t2 - t1) / 1000000000) + " s");
 			}
 		});
 		
 		notesLabel = new JLabel("<html><b><u>Notes:</u></b><br>The laser sight in the primary attachment slot is only available for the G17C, personal defense weapons (PDWs), and the QBZ-95B.<br>You will still need to select the laser sight for the G17C.");
+		
+		separator1 = new JSeparator();
 		
 		weapon1Image = new JLabel("<html><center></center><b>Primary Attachment:</b> <br><b>Secondary Attachment:</b> ");
 		weapon1Image.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -202,7 +222,11 @@ public final class Window extends JFrame {
 		weapon2Image.setHorizontalTextPosition(SwingConstants.CENTER);
 		weapon2Image.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
-		separator1 = new JSeparator();
+		
+		
+		timeToKillGraph = new InterfaceComponent(this);
+		try {timeToKillGraph.open("TimeToKillGraph.nlogo");}
+		catch (Exception e) {showErrorMessage(e);}
 		
 		separator2 = new JSeparator();
 		
@@ -221,7 +245,7 @@ public final class Window extends JFrame {
 		themeComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {UIManager.setLookAndFeel(lookAndFeels.get((String) themeComboBox.getSelectedItem()));}
-				catch (Exception e2) {JOptionPane.showMessageDialog(Window.this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e2), "Error", JOptionPane.ERROR_MESSAGE);}
+				catch (Exception e2) {showErrorMessage(e2);}
 				javax.swing.SwingUtilities.updateComponentTreeUI(Window.this);
 				packAndCenter();
 			}
@@ -258,6 +282,7 @@ public final class Window extends JFrame {
                             .addComponent(vsLabel)
                             .addPreferredGap(ComponentPlacement.RELATED)
                             .addComponent(weapon2Image))
+						.addComponent(timeToKillGraph, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(separator2))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(themeLabel)
@@ -271,7 +296,7 @@ public final class Window extends JFrame {
                 .addContainerGap()
                 .addComponent(instructionsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(weapon1ComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(weapon1PrimaryAttachmentComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(weapon1SecondaryAttachmentComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -284,14 +309,16 @@ public final class Window extends JFrame {
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(separator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(weapon1Image)
                     .addComponent(vsLabel)
                     .addComponent(weapon2Image))
                 .addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(timeToKillGraph, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(separator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(themeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(themeLabel))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -304,4 +331,6 @@ public final class Window extends JFrame {
 		pack();
 		setLocationRelativeTo(null);
 	}
+	
+	public final void showErrorMessage(Exception e) {JOptionPane.showMessageDialog(this, "An error has occurred. Stack trace:\n\n" + StackTrace.stackTraceToString(e), "Error", JOptionPane.ERROR_MESSAGE);}
 }
