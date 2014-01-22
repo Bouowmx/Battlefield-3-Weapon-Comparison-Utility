@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable; 
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import org.nlogo.lite.InterfaceComponent;
@@ -255,13 +256,17 @@ public final class Window extends JFrame {
 
 	separator3 = new JSeparator(); 
 	
-	TableModel dataModel = new AbstractTableModel() {
-		public int getColumnCount() { return 3; }
-		public int getRowCount() { return 26;}
-		public Object getValueAt(int row, int col) { return new Integer(row*col); }
-	    };
+	String[] columnNames = {
+	    "Stat",
+	    "Name",
+	    "Name",
+	};
+
+	Object[][] data = {
+	    {"Max Damage", new double (weapon1ComboBox.getSelectedItem().MAX_DAMAGE), new double (weapon2ComboBox.getSelectedItem().MAX_DAMAGE)},
+	}
 	
-	table = new JTable(dataModel);
+	table = new JTable(data, columnNames);
 	JScrollPane scrollpane = new JScrollPane(table);
 
 	GroupLayout layout = new GroupLayout(getContentPane());
