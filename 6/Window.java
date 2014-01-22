@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable; 
 import javax.swing.UIManager;
@@ -262,9 +263,7 @@ public final class Window extends JFrame {
 	    "Name",
 	};
 
-	Object[][] data = {
-	    {"Max Damage", new double (weapon1ComboBox.getSelectedItem().MAX_DAMAGE), new double (weapon2ComboBox.getSelectedItem().MAX_DAMAGE)},
-	}
+	Object[][] data = new Object[][] {new Object[] {"Max Damage", null, null}};
 	
 	table = new JTable(data, columnNames);
 	JScrollPane scrollpane = new JScrollPane(table);
