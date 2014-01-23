@@ -52,31 +52,32 @@ public final class Window extends JFrame {
     };
 
     Object[][] data = {
-	{"Max Damage", 0, 0}, 
-	{"Min Damage", 0, 0},
-	{"Damage Drop-off Start", 0, 0},
-	{"Damage Drop-off End", 0, 0},
-	{"Rate of Fire", 0, 0},
-	{"Muzzle Velocity", 0, 0},
-	{"Suppression", 0, 0},
-	{"Recoil Up", 0, 0},
-	{"Recoil Left", 0, 0},
-	{"Recoil Right", 0, 0},
-	{"First Shot Multiplier", 0, 0},
-	{"Recoil Recovery", 0, 0},
-	{"ADS Stationary Standing Spread", 0, 0},
-	{"ADS Stationary Crouching Spread", 0, 0},
-	{"ADS Stationary Prone Spread", 0, 0},
-	{"ADS Moving Spread", 0, 0},
-	{"ADS Crouching Spread", 0, 0},
-	{"ADS Moving Prone Spread", 0, 0},
-	{"HIP Stationary Standing Spread", 0, 0},
-	{"HIP Stationary Crouching Spread", 0, 0},
-	{"HIP Stationary Prone Spread", 0, 0},
-	{"HIP Moving Standing Spread", 0, 0},
-	{"HIP Moving Crouching Spread", 0, 0},
-	{"HIP Moving Prone Spread", 0, 0},
-	{"Spread Increase", 0, 0},
+	new Object[] {"Max Damage", 0, 0}, 
+	new Object[] {"Min Damage", 0, 0},
+	new Object[] {"Damage Drop-off Start", 0, 0},
+	new Object[] {"Damage Drop-off End", 0, 0},
+	new Object[] {"Rate of Fire", 0, 0},
+	new Object[] {"Muzzle Velocity", 0, 0},
+	new Object[] {"Suppression", 0, 0},
+	new Object[] {"Recoil Up", 0, 0},
+	new Object[] {"Recoil Left", 0, 0},
+	new Object[] {"Recoil Right", 0, 0},
+	new Object[] {"First Shot Multiplier", 0, 0},
+	new Object[] {"Recoil Recovery", 0, 0},
+	new Object[] {"ADS Stationary Standing Spread", 0, 0},
+	new Object[] {"ADS Stationary Crouching Spread", 0, 0},
+	new Object[] {"ADS Stationary Prone Spread", 0, 0},
+	new Object[] {"ADS Moving Spread", 0, 0},
+	new Object[] {"ADS Crouching Spread", 0, 0},
+	new Object[] {"ADS Moving Prone Spread", 0, 0},
+	new Object[] {"HIP Stationary Standing Spread", 0, 0},
+	new Object[] {"HIP Stationary Crouching Spread", 0, 0},
+	new Object[] {"HIP Stationary Prone Spread", 0, 0},
+	new Object[] {"HIP Moving Standing Spread", 0, 0},
+	new Object[] {"HIP Moving Crouching Spread", 0, 0},
+	new Object[] {"HIP Moving Prone Spread", 0, 0},
+	new Object[] {"Spread Increase", 0, 0},
+	new Object[] {"Spread Decrease", 0, 0},
     };
 	
     public Window() {
@@ -247,6 +248,54 @@ public final class Window extends JFrame {
 		    columnNames [2] = weapon2.NAME; 
 		    data [0] [1] = weapon1.MAX_DAMAGE;
 		    data [0] [2] = weapon2.MAX_DAMAGE; 
+		    data [1] [1] = weapon1.MIN_DAMAGE; 
+		    data [1] [2] = weapon2.MIN_DAMAGE; 
+		    data [2] [1] = weapon1.DAMAGE_DO_START; 
+		    data [2] [2] = weapon2.DAMAGE_DO_START;
+		    data [3] [1] = weapon1.DAMAGE_DO_END; 
+		    data [3] [2] = weapon2.DAMAGE_DO_END;
+		    data [4] [1] = weapon1.RATE_OF_FIRE; 
+		    data [4] [2] = weapon2.RATE_OF_FIRE;
+		    data [5] [1] = weapon1.MIN_DAMAGE; 
+		    data [5] [2] = weapon2.MIN_DAMAGE;
+		    data [6] [1] = weapon1.MIN_DAMAGE; 
+		    data [6] [2] = weapon2.MIN_DAMAGE;
+		    data [7] [1] = weapon1.MIN_DAMAGE; 
+		    data [7] [2] = weapon2.MIN_DAMAGE;
+		    data [8] [1] = weapon1.MIN_DAMAGE; 
+		    data [8] [2] = weapon2.MIN_DAMAGE;
+		    data [9] [1] = weapon1.MIN_DAMAGE; 
+		    data [9] [2] = weapon2.MIN_DAMAGE;
+		    data [10] [1] = weapon1.MIN_DAMAGE; 
+		    data [10] [2] = weapon2.MIN_DAMAGE;
+		    data [11] [1] = weapon1.MIN_DAMAGE; 
+		    data [11] [2] = weapon2.MIN_DAMAGE;
+		    data [12] [1] = weapon1.MIN_DAMAGE; 
+		    data [12] [2] = weapon2.MIN_DAMAGE;
+		    data [13] [1] = weapon1.MIN_DAMAGE; 
+		    data [13] [2] = weapon2.MIN_DAMAGE;
+		    data [14] [1] = weapon1.MIN_DAMAGE; 
+		    data [14] [2] = weapon2.MIN_DAMAGE;
+		    data [15] [1] = weapon1.MIN_DAMAGE; 
+		    data [15] [2] = weapon2.MIN_DAMAGE;
+		    data [16] [1] = weapon1.MIN_DAMAGE; 
+		    data [16] [2] = weapon2.MIN_DAMAGE;
+		    data [17] [1] = weapon1.MIN_DAMAGE; 
+		    data [17] [2] = weapon2.MIN_DAMAGE;
+		    data [18] [1] = weapon1.MIN_DAMAGE; 
+		    data [18] [2] = weapon2.MIN_DAMAGE;
+		    data [19] [1] = weapon1.MIN_DAMAGE; 
+		    data [19] [2] = weapon2.MIN_DAMAGE;
+		    data [20] [1] = weapon1.MIN_DAMAGE; 
+		    data [20] [2] = weapon2.MIN_DAMAGE;
+		    data [21] [1] = weapon1.MIN_DAMAGE; 
+		    data [21] [2] = weapon2.MIN_DAMAGE;
+		    data [22] [1] = weapon1.MIN_DAMAGE; 
+		    data [22] [2] = weapon2.MIN_DAMAGE;
+		    data [23] [1] = weapon1.MIN_DAMAGE; 
+		    data [23] [2] = weapon2.MIN_DAMAGE;
+		    data [24] [1] = weapon1.MIN_DAMAGE; 
+		    data [24] [2] = weapon2.MIN_DAMAGE;
 		}
 	    });
 		
@@ -297,7 +346,7 @@ public final class Window extends JFrame {
 	separator3 = new JSeparator(); 
 	
 	table = new JTable(data, columnNames);
-	JScrollPane scrollpane = new JScrollPane(table);
+//	JScrollPane scrollpane = new JScrollPane(table);
 
 	GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
