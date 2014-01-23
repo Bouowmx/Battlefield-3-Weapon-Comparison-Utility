@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable; 
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import org.nlogo.lite.InterfaceComponent;
@@ -42,6 +43,15 @@ public final class Window extends JFrame {
     public JSeparator separator2;
     public JSeparator separator3;
     public JTable table;
+    public JScrollPane scrollpane; 
+
+    String[] columnNames = {
+	"Stat",
+	"Weapon 1",
+	"Weapon 2",
+    };
+
+    Object[][] data = {{"Max Damage"}};
 	
     public Window() {
 	weapons = new HashMap<>(63, 1); //62 weapons but 63 slots, to avoid rehashing with loading factor 1.
@@ -259,14 +269,6 @@ public final class Window extends JFrame {
 	    });
 
 	separator3 = new JSeparator(); 
-	
-	String[] columnNames = {
-	    "Stat",
-	    "Weapon 1",
-	    "Weapon 2",
-	};
-
-	Object[][] data = {{"Max Damage"}}
 	
 	table = new JTable(data, columnNames);
 	JScrollPane scrollpane = new JScrollPane(table);
