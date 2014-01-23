@@ -51,7 +51,33 @@ public final class Window extends JFrame {
 	"Weapon 2",
     };
 
-    Object[][] data = {{"Max Damage"}};
+    Object[][] data = {
+	{"Max Damage", 0, 0}, 
+	{"Min Damage", 0, 0},
+	{"Damage Drop-off Start", 0, 0},
+	{"Damage Drop-off End", 0, 0},
+	{"Rate of Fire", 0, 0},
+	{"Muzzle Velocity", 0, 0},
+	{"Suppression", 0, 0},
+	{"Recoil Up", 0, 0},
+	{"Recoil Left", 0, 0},
+	{"Recoil Right", 0, 0},
+	{"First Shot Multiplier", 0, 0},
+	{"Recoil Recovery", 0, 0},
+	{"ADS Stationary Standing Spread", 0, 0},
+	{"ADS Stationary Crouching Spread", 0, 0},
+	{"ADS Stationary Prone Spread", 0, 0},
+	{"ADS Moving Spread", 0, 0},
+	{"ADS Crouching Spread", 0, 0},
+	{"ADS Moving Prone Spread", 0, 0},
+	{"HIP Stationary Standing Spread", 0, 0},
+	{"HIP Stationary Crouching Spread", 0, 0},
+	{"HIP Stationary Prone Spread", 0, 0},
+	{"HIP Moving Standing Spread", 0, 0},
+	{"HIP Moving Crouching Spread", 0, 0},
+	{"HIP Moving Prone Spread", 0, 0},
+	{"Spread Increase", 0, 0},
+    };
 	
     public Window() {
 	weapons = new HashMap<>(63, 1); //62 weapons but 63 slots, to avoid rehashing with loading factor 1.
