@@ -383,6 +383,7 @@ public final class Window extends JFrame {
 									  .addComponent(weapon2Image))
 								.addComponent(timeToKillGraph, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(separator2))
+						      .addComponent(table)//
 						      .addGroup(layout.createSequentialGroup()
 								.addComponent(themeLabel)
 								.addPreferredGap(ComponentPlacement.RELATED)
