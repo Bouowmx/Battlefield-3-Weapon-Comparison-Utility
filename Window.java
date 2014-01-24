@@ -348,7 +348,7 @@ public final class Window extends JFrame {
 	separator3 = new JSeparator(); 
 	
 	table = new JTable(data, columnNames);
-//	JScrollPane scrollpane = new JScrollPane(table);
+	JScrollPane scrollpane = new JScrollPane(table);
 
 	GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -384,6 +384,9 @@ public final class Window extends JFrame {
 								.addComponent(timeToKillGraph, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(separator2))
 						      .addGroup(layout.createSequentialGroup()
+								.addComponent(scrollpane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)//
+								.addComponent(separator3))
+						      .addGroup(layout.createSequentialGroup()
 								.addComponent(themeLabel)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(themeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
@@ -417,6 +420,9 @@ public final class Window extends JFrame {
 					  .addPreferredGap(ComponentPlacement.RELATED)
 					  .addComponent(separator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					  .addPreferredGap(ComponentPlacement.RELATED)
+					  .addComponent(scrollpane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					  .addPreferredGap(ComponentPlacement.RELATED)
+					  .addComponent(separator3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					  .addGroup(layout.createParallelGroup(Alignment.BASELINE)
 						    .addComponent(themeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(themeLabel))
