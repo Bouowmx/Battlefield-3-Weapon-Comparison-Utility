@@ -43,7 +43,11 @@ public final class Window extends JFrame {
     public JSeparator separator1;
     public JSeparator separator2;
     public JSeparator separator3;
-    public JTable table;
+    public JTable outputTable;
+    public JTable recoilTable; 
+    public JTable adsTable; 
+    public JTable hipTable; 
+    public JTable spreadTable; 
     public JScrollPane scrollpane; 
 
     //make a statsLabel
@@ -63,6 +67,12 @@ public final class Window extends JFrame {
 	new Object[] {"Muzzle Velocity", 0, 0},
 	new Object[] {"Suppression", 0, 0},
     };
+
+    String[] columnNames2 = {
+	"Recoil",
+	"Weapon 1",
+	"Weapon 2", 
+    };
     
     Object[][] recoilData = {
 	new Object[] {"Recoil Up", 0, 0},
@@ -70,6 +80,12 @@ public final class Window extends JFrame {
 	new Object[] {"Recoil Right", 0, 0},
 	new Object[] {"First Shot Multiplier", 0, 0},
 	new Object[] {"Recoil Recovery", 0, 0},
+    };
+
+    String[] columnNames3 = {
+	"ADS Spread",
+	"Weapon 1",
+	"Weapon 2", 
     };
 
     Object[][] spreadDataADS = {
@@ -81,6 +97,12 @@ public final class Window extends JFrame {
 	new Object[] {"ADS Moving Prone Spread", 0, 0}
     };
 
+    String[] columnNames4 = {
+	"HIP Spread",
+	"Weapon 1",
+	"Weapon 2", 
+    };
+
     Object[][] spreadDataHIP = {
 	new Object[] {"HIP Stationary Standing Spread", 0, 0},
 	new Object[] {"HIP Stationary Crouching Spread", 0, 0},
@@ -90,6 +112,12 @@ public final class Window extends JFrame {
 	new Object[] {"HIP Moving Prone Spread", 0, 0},
     };
     
+    String[] columnNames5 = {
+	"Spread",
+	"Weapon 1",
+	"Weapon 2", 
+    };
+
     Object[] spreadData = {
 	new Object[] {"Spread Increase", 0, 0},
 	new Object[] {"Spread Decrease", 0, 0},
@@ -259,12 +287,23 @@ public final class Window extends JFrame {
 		    System.out.println(getWidth());
 		    long t2 = nanoTime();
 		    System.out.println("Compare time: " + (t2 - t1) + " ns / " + ((double) (t2 - t1) / 1000000) + " ms / " + ((double) (t2 - t1) / 1000000000) + " s");
-		    columnNames [1] = weapon1.NAME;
-		    columnNames [2] = weapon2.NAME; 
-		    data [0] [1] = weapon1.MAX_DAMAGE;
-		    data [0] [2] = weapon2.MAX_DAMAGE; 
-		    data [1] [1] = weapon1.MIN_DAMAGE; 
-		    data [1] [2] = weapon2.MIN_DAMAGE; 
+		   
+
+		    columnNames1 [1] = weapon1.NAME;
+		    columnNames1 [2] = weapon2.NAME; 
+		    columnNames2 [1] = weapon1.NAME;
+		    columnNames2 [2] = weapon2.NAME;
+		    columnNames3 [1] = weapon1.NAME;
+		    columnNames3 [2] = weapon2.NAME; 
+		    columnNames4 [1] = weapon1.NAME;
+		    columnNames4 [2] = weapon2.NAME; 
+		    columnNames5 [1] = weapon1.NAME;
+		    columnNames5 [2] = weapon2.NAME;  
+		    
+		    outputData [0] [1] = weapon1.MAX_DAMAGE;
+		    outputData [0] [2] = weapon2.MAX_DAMAGE; 
+		    outputData [1] [1] = weapon1.MIN_DAMAGE; 
+		    outputData [1] [2] = weapon2.MIN_DAMAGE; 
 		    data [2] [1] = weapon1.DAMAGE_DO_START; 
 		    data [2] [2] = weapon2.DAMAGE_DO_START;
 		    data [3] [1] = weapon1.DAMAGE_DO_END; 
@@ -275,6 +314,7 @@ public final class Window extends JFrame {
 		    data [5] [2] = weapon2.MUZZLE_VELOCITY;
 		    data [6] [1] = weapon1.SUPPRESSION; 
 		    data [6] [2] = weapon2.SUPPRESSION;
+		   
 		    data [7] [1] = weapon1.RECOIL_UP; 
 		    data [7] [2] = weapon2.RECOIL_UP;
 		    data [8] [1] = weapon1.RECOIL_LEFT; 
