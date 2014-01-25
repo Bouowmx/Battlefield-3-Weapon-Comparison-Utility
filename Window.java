@@ -51,6 +51,7 @@ public final class Window extends JFrame {
     public JScrollPane scrollpane; 
 
     //make a statsLabel
+    //NTS- make it so better stat is in bold? (see .py project)
 
     String[] columnNames1 = {
 	"Output",
