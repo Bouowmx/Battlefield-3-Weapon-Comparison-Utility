@@ -39,19 +39,22 @@ public final class Window extends JFrame {
     public JLabel weapon1Image;
     public JLabel weapon2Image;
     public JLabel vsLabel;
+    public JLabel statsLabel;
     public JSeparator separator1;
     public JSeparator separator2;
     public JSeparator separator3;
     public JTable table;
     public JScrollPane scrollpane; 
 
-    String[] columnNames = {
-	"Stat",
+    //make a statsLabel
+
+    String[] columnNames1 = {
+	"Output",
 	"Weapon 1",
 	"Weapon 2",
     };
 
-    Object[][] data = {
+    Object[][] outputData = {
 	new Object[] {"Max Damage", 0, 0}, 
 	new Object[] {"Min Damage", 0, 0},
 	new Object[] {"Damage Drop-off Start", 0, 0},
@@ -59,23 +62,35 @@ public final class Window extends JFrame {
 	new Object[] {"Rate of Fire", 0, 0},
 	new Object[] {"Muzzle Velocity", 0, 0},
 	new Object[] {"Suppression", 0, 0},
+    };
+    
+    Object[][] recoilData = {
 	new Object[] {"Recoil Up", 0, 0},
 	new Object[] {"Recoil Left", 0, 0},
 	new Object[] {"Recoil Right", 0, 0},
 	new Object[] {"First Shot Multiplier", 0, 0},
 	new Object[] {"Recoil Recovery", 0, 0},
+    };
+
+    Object[][] spreadDataADS = {
 	new Object[] {"ADS Stationary Standing Spread", 0, 0},
 	new Object[] {"ADS Stationary Crouching Spread", 0, 0},
 	new Object[] {"ADS Stationary Prone Spread", 0, 0},
 	new Object[] {"ADS Moving Spread", 0, 0},
 	new Object[] {"ADS Crouching Spread", 0, 0},
-	new Object[] {"ADS Moving Prone Spread", 0, 0},
+	new Object[] {"ADS Moving Prone Spread", 0, 0}
+    };
+
+    Object[][] spreadDataHIP = {
 	new Object[] {"HIP Stationary Standing Spread", 0, 0},
 	new Object[] {"HIP Stationary Crouching Spread", 0, 0},
 	new Object[] {"HIP Stationary Prone Spread", 0, 0},
 	new Object[] {"HIP Moving Standing Spread", 0, 0},
 	new Object[] {"HIP Moving Crouching Spread", 0, 0},
 	new Object[] {"HIP Moving Prone Spread", 0, 0},
+    };
+    
+    Object[] spreadData = {
 	new Object[] {"Spread Increase", 0, 0},
 	new Object[] {"Spread Decrease", 0, 0},
     };
