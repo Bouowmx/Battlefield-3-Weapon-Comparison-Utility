@@ -48,7 +48,7 @@ public final class Window extends JFrame {
     public JTable recoilTable; 
     public JTable adsTable; 
     public JTable hipTable; 
-    public JTable spreadTable; 
+    //public JTable spreadTable; 
     public JScrollPane scrollpaneOutput; 
     public JScrollPane scrollpaneRecoil; 
     public JScrollPane scrollpaneADS;
@@ -89,6 +89,9 @@ public final class Window extends JFrame {
 	new Object[] {"Recoil Right", 0, 0},
 	new Object[] {"First Shot x", 0, 0},
 	new Object[] {"Recovery", 0, 0},
+	new Object[] {"<html><b>SPREAD</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},	
+	new Object[] {"Increase", 0, 0},
+	new Object[] {"Decrease", 0, 0},
     };
 
     String[] columnNames3 = {
@@ -100,11 +103,11 @@ public final class Window extends JFrame {
 	//separate subtables for legibilty
 
     Object[][] spreadDataADS = {
-	new Object[] {"<html><b>ADS-Station</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
+	new Object[] {"<html><b>ADS-STATION</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
 	new Object[] {"Standing", 0, 0},
 	new Object[] {"Crouching", 0, 0},
 	new Object[] {"Prone", 0, 0},
-	new Object[] {"<html><b>ADS-Moving</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
+	new Object[] {"<html><b>ADS-MOVING</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
 	new Object[] {"Moving", 0, 0},
 	new Object[] {"Crouching", 0, 0},
 	new Object[] {"Prone", 0, 0}
@@ -117,27 +120,27 @@ public final class Window extends JFrame {
     };
 
     Object[][] spreadDataHIP = {
-	new Object[] {"<html><b>HIP-Station</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
+	new Object[] {"<html><b>HIP-STATION</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
 	new Object[] {"Standing", 0, 0},
 	new Object[] {"Crouching", 0, 0},
 	new Object[] {"Prone", 0, 0},
-	new Object[] {"<html><b>ADS-Moving</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
-	new Object[] {"HIP Moving Standing Spread", 0, 0},
-	new Object[] {"HIP Moving Crouching Spread", 0, 0},
-	new Object[] {"HIP Moving Prone Spread", 0, 0},
+	new Object[] {"<html><b>ADS-MOVING</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
+	new Object[] {"Standing", 0, 0},
+	new Object[] {"Crouching", 0, 0},
+	new Object[] {"Prone", 0, 0},
     };
     
-    String[] columnNames5 = {
-	"Spread",
-	"Weapon 1",
-	"Weapon 2", 
-    };
+    //   String[] columnNames5 = {
+    //	"Spread",
+    //	"Weapon 1",
+    //	"Weapon 2", 
+    // };
 
-    Object[][] spreadData = {
-	new Object[] {"<html><b>Spread</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},	
-	new Object[] {"Increase", 0, 0},
-	new Object[] {"Decrease", 0, 0},
-    };
+    //    Object[][] spreadData = {
+    //	new Object[] {"<html><b>SPREAD</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},	
+    //	new Object[] {"Increase", 0, 0},
+    //	new Object[] {"Decrease", 0, 0},
+    //};
 	
     public Window() {
 	weapons = new HashMap<>(63, 1); //62 weapons but 63 slots, to avoid rehashing with loading factor 1.
@@ -313,8 +316,8 @@ public final class Window extends JFrame {
 		    columnNames3 [2] = weapon2.NAME; 
 		    columnNames4 [1] = weapon1.NAME;
 		    columnNames4 [2] = weapon2.NAME; 
-		    columnNames5 [1] = weapon1.NAME;
-		    columnNames5 [2] = weapon2.NAME;  
+		    //columnNames5 [1] = weapon1.NAME;
+		    //columnNames5 [2] = weapon2.NAME;  
 		    
 		    outputData [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>";
 		    outputData [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>"; 
@@ -347,6 +350,12 @@ public final class Window extends JFrame {
 		    recoilData [4] [2] = weapon2.FIRST_SHOT_MULTIPLIER;
 		    recoilData [5] [1] = weapon1.RECOIL_DECREASE; 
 		    recoilData [5] [2] = weapon2.RECOIL_DECREASE;
+		    recoilData [6] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    recoilData [6] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
+		    recoilData [7] [1] = weapon1.SPREAD_INCREASE; 
+		    recoilData [7] [2] = weapon2.SPREAD_INCREASE;
+		    recoilData [8] [1] = weapon1.SPREAD_DECREASE; 
+		    recoilData [8] [2] = weapon2.SPREAD_DECREASE;
 
 		    spreadDataADS [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
 		    spreadDataADS [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
@@ -382,12 +391,7 @@ public final class Window extends JFrame {
 		    spreadDataHIP [7] [1] = weapon1.HIP_MOVING_PRONE_SPREAD; 
 		    spreadDataHIP [7] [2] = weapon2.HIP_MOVING_PRONE_SPREAD;
 
-		    spreadData [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
-		    spreadData [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
-		    spreadData [1] [1] = weapon1.SPREAD_INCREASE; 
-		    spreadData [1] [2] = weapon2.SPREAD_INCREASE;
-		    spreadData [2] [1] = weapon1.SPREAD_DECREASE; 
-		    spreadData [2] [2] = weapon2.SPREAD_DECREASE;
+
 		}
 	    });
 		
@@ -444,7 +448,7 @@ public final class Window extends JFrame {
 	recoilTable = new JTable (recoilData, columnNames2);
 	adsTable = new JTable (spreadDataADS, columnNames3); 
 	hipTable = new JTable (spreadDataHIP, columnNames4); 
-	spreadTable = new JTable (spreadData, columnNames5);
+	//	spreadTable = new JTable (spreadData, columnNames5);
 
 	//       	JScrollPane scrollpaneOutput = new JScrollPane(outputTable);
 	//JScrollPane scrollpaneRecoil = new JScrollPane(recoilTable); 
@@ -491,7 +495,7 @@ public final class Window extends JFrame {
 								.addComponent(recoilTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(adsTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(hipTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(spreadTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								//	.addComponent(spreadTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(separator3))
 						      .addGroup(layout.createSequentialGroup()
 								.addComponent(themeLabel)
@@ -533,8 +537,8 @@ public final class Window extends JFrame {
 						    .addComponent(outputTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(recoilTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(adsTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(hipTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(spreadTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						    .addComponent(hipTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						    //	    .addComponent(spreadTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					  .addPreferredGap(ComponentPlacement.RELATED)
 					  .addComponent(separator3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					  .addGroup(layout.createParallelGroup(Alignment.BASELINE)
