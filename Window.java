@@ -39,7 +39,7 @@ public final class Window extends JFrame {
     public JLabel weapon1Image;
     public JLabel weapon2Image;
     public JLabel vsLabel;
-    public JLabel statsLabel;
+    //   public JLabel statsLabel;
     public JSeparator separator1;
     public JSeparator separator2;
     public JSeparator separator3;
@@ -70,7 +70,7 @@ public final class Window extends JFrame {
 	new Object[] {"Min", 0, 0},
 	new Object[] {"Dropoff Start", 0, 0},
 	new Object[] {"Dropoff End", 0, 0},
-	//Output
+	new Object[] {"<html><b>OUTPUT</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //Output-5
 	new Object[] {"Rate of Fire", 0, 0},
 	new Object[] {"Muzzle Velocity", 0, 0},
 	new Object[] {"Suppression", 0, 0},
@@ -104,10 +104,10 @@ public final class Window extends JFrame {
 	new Object[] {"Standing", 0, 0},
 	new Object[] {"Crouching", 0, 0},
 	new Object[] {"Prone", 0, 0},
-	//
-	new Object[] {"ADS Moving Spread", 0, 0},
-	new Object[] {"ADS Crouching Spread", 0, 0},
-	new Object[] {"ADS Moving Prone Spread", 0, 0}
+	new Object[] {"<html><b>ADS-Moving</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
+	new Object[] {"Moving", 0, 0},
+	new Object[] {"Crouching", 0, 0},
+	new Object[] {"Prone", 0, 0}
     };
 
     String[] columnNames4 = {
@@ -121,7 +121,7 @@ public final class Window extends JFrame {
 	new Object[] {"Standing", 0, 0},
 	new Object[] {"Crouching", 0, 0},
 	new Object[] {"Prone", 0, 0},
-	//
+	new Object[] {"<html><b>ADS-Moving</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
 	new Object[] {"HIP Moving Standing Spread", 0, 0},
 	new Object[] {"HIP Moving Crouching Spread", 0, 0},
 	new Object[] {"HIP Moving Prone Spread", 0, 0},
@@ -326,12 +326,14 @@ public final class Window extends JFrame {
 		    outputData [3] [2] = weapon2.DAMAGE_DO_START;
 		    outputData [4] [1] = weapon1.DAMAGE_DO_END; 
 		    outputData [4] [2] = weapon2.DAMAGE_DO_END;
-		    outputData [5] [1] = weapon1.RATE_OF_FIRE; 
-		    outputData [5] [2] = weapon2.RATE_OF_FIRE;
-		    outputData [6] [1] = weapon1.MUZZLE_VELOCITY; 
-		    outputData [6] [2] = weapon2.MUZZLE_VELOCITY;
-		    outputData [7] [1] = weapon1.SUPPRESSION; 
-		    outputData [7] [2] = weapon2.SUPPRESSION;
+		    outputData [5] [1] = weapon1.NAME;
+		    outputData [5] [2] = weapon2.NAME;
+		    outputData [6] [1] = weapon1.RATE_OF_FIRE; 
+		    outputData [6] [2] = weapon2.RATE_OF_FIRE;
+		    outputData [7] [1] = weapon1.MUZZLE_VELOCITY; 
+		    outputData [7] [2] = weapon2.MUZZLE_VELOCITY;
+		    outputData [8] [1] = weapon1.SUPPRESSION; 
+		    outputData [8] [2] = weapon2.SUPPRESSION;
 		   
 		    recoilData [0] [1] = weapon1.NAME; 
 		    recoilData [0] [2] = weapon2.NAME;
@@ -354,12 +356,14 @@ public final class Window extends JFrame {
 		    spreadDataADS [2] [2] = weapon2.ADS_STATIONARY_CROUCHING_SPREAD ;
 		    spreadDataADS [3] [1] = weapon1.ADS_STATIONARY_PRONE_SPREAD; 
 		    spreadDataADS [3] [2] = weapon2.ADS_STATIONARY_PRONE_SPREAD;
-		    spreadDataADS [4] [1] = weapon1.ADS_MOVING_STANDING_SPREAD; 
-		    spreadDataADS [4] [2] = weapon2.ADS_MOVING_STANDING_SPREAD;
-		    spreadDataADS [5] [1] = weapon1.ADS_MOVING_CROUCHING_SPREAD; 
-		    spreadDataADS [5] [2] = weapon2.ADS_MOVING_CROUCHING_SPREAD;
-		    spreadDataADS [6] [1] = weapon1.ADS_MOVING_PRONE_SPREAD; 
-		    spreadDataADS [6] [2] = weapon2.ADS_MOVING_PRONE_SPREAD;
+		    spreadDataADS [4] [1] = weapon1.NAME; 
+		    spreadDataADS [4] [2] = weapon2.NAME;
+		    spreadDataADS [5] [1] = weapon1.ADS_MOVING_STANDING_SPREAD; 
+		    spreadDataADS [5] [2] = weapon2.ADS_MOVING_STANDING_SPREAD;
+		    spreadDataADS [6] [1] = weapon1.ADS_MOVING_CROUCHING_SPREAD; 
+		    spreadDataADS [6] [2] = weapon2.ADS_MOVING_CROUCHING_SPREAD;
+		    spreadDataADS [7] [1] = weapon1.ADS_MOVING_PRONE_SPREAD; 
+		    spreadDataADS [7] [2] = weapon2.ADS_MOVING_PRONE_SPREAD;
 
 		    spreadDataHIP [0] [1] = weapon1.NAME; 
 		    spreadDataHIP [0] [2] = weapon2.NAME;
@@ -369,12 +373,14 @@ public final class Window extends JFrame {
 		    spreadDataHIP [2] [2] = weapon2.HIP_STATIONARY_CROUCHING_SPREAD;
 		    spreadDataHIP [3] [1] = weapon1.HIP_STATIONARY_PRONE_SPREAD; 
 		    spreadDataHIP [3] [2] = weapon2.HIP_STATIONARY_PRONE_SPREAD;
-		    spreadDataHIP [4] [1] = weapon1.HIP_MOVING_STANDING_SPREAD; 
-		    spreadDataHIP [4] [2] = weapon2.HIP_MOVING_STANDING_SPREAD;
-		    spreadDataHIP [5] [1] = weapon1.HIP_MOVING_CROUCHING_SPREAD; 
-		    spreadDataHIP [5] [2] = weapon2.HIP_MOVING_CROUCHING_SPREAD;
-		    spreadDataHIP [6] [1] = weapon1.HIP_MOVING_PRONE_SPREAD; 
-		    spreadDataHIP [6] [2] = weapon2.HIP_MOVING_PRONE_SPREAD;
+		    spreadDataHIP [4] [1] = weapon1.NAME; 
+		    spreadDataHIP [4] [2] = weapon2.NAME;
+		    spreadDataHIP [5] [1] = weapon1.HIP_MOVING_STANDING_SPREAD; 
+		    spreadDataHIP [5] [2] = weapon2.HIP_MOVING_STANDING_SPREAD;
+		    spreadDataHIP [6] [1] = weapon1.HIP_MOVING_CROUCHING_SPREAD; 
+		    spreadDataHIP [6] [2] = weapon2.HIP_MOVING_CROUCHING_SPREAD;
+		    spreadDataHIP [7] [1] = weapon1.HIP_MOVING_PRONE_SPREAD; 
+		    spreadDataHIP [7] [2] = weapon2.HIP_MOVING_PRONE_SPREAD;
 
 		    spreadData [0] [1] = weapon1.NAME; 
 		    spreadData [0] [2] = weapon2.NAME;
@@ -429,7 +435,7 @@ public final class Window extends JFrame {
 		}
 	    });
 
-	statsLabel = new JLabel ("Statistics"); 
+	//	statsLabel = new JLabel ("Statistics"); 
 
 	separator3 = new JSeparator(); 
 	//	separator4 = new JSeparator(); 
@@ -480,7 +486,7 @@ public final class Window extends JFrame {
 								.addComponent(timeToKillGraph, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(separator2))
 						      .addGroup(layout.createSequentialGroup()
-								.addComponent(statsLabel)
+								//.addComponent(statsLabel)
 								.addComponent(outputTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)//
 								.addComponent(recoilTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(adsTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -521,8 +527,8 @@ public final class Window extends JFrame {
 					  .addPreferredGap(ComponentPlacement.RELATED)
 					  .addComponent(separator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					  .addPreferredGap(ComponentPlacement.RELATED)
-					  .addComponent(statsLabel)
-					  .addPreferredGap(ComponentPlacement.RELATED)
+					  //.addComponent(statsLabel)
+					  //.addPreferredGap(ComponentPlacement.RELATED)
 					  .addGroup(layout.createParallelGroup(Alignment.BASELINE)
 						    .addComponent(outputTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(recoilTable, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
