@@ -305,16 +305,16 @@ public final class Window extends JFrame {
 		    outputData [0] [2] = weapon2.MAX_DAMAGE; 
 		    outputData [1] [1] = weapon1.MIN_DAMAGE; 
 		    outputData [1] [2] = weapon2.MIN_DAMAGE; 
-		    data [2] [1] = weapon1.DAMAGE_DO_START; 
-		    data [2] [2] = weapon2.DAMAGE_DO_START;
-		    data [3] [1] = weapon1.DAMAGE_DO_END; 
-		    data [3] [2] = weapon2.DAMAGE_DO_END;
-		    data [4] [1] = weapon1.RATE_OF_FIRE; 
-		    data [4] [2] = weapon2.RATE_OF_FIRE;
-		    data [5] [1] = weapon1.MUZZLE_VELOCITY; 
-		    data [5] [2] = weapon2.MUZZLE_VELOCITY;
-		    data [6] [1] = weapon1.SUPPRESSION; 
-		    data [6] [2] = weapon2.SUPPRESSION;
+		    outputData [2] [1] = weapon1.DAMAGE_DO_START; 
+		    outputData [2] [2] = weapon2.DAMAGE_DO_START;
+		    outputData [3] [1] = weapon1.DAMAGE_DO_END; 
+		    outputData [3] [2] = weapon2.DAMAGE_DO_END;
+		    outputData [4] [1] = weapon1.RATE_OF_FIRE; 
+		    outputData [4] [2] = weapon2.RATE_OF_FIRE;
+		    outputData [5] [1] = weapon1.MUZZLE_VELOCITY; 
+		    outputData [5] [2] = weapon2.MUZZLE_VELOCITY;
+		    outputData [6] [1] = weapon1.SUPPRESSION; 
+		    outputData [6] [2] = weapon2.SUPPRESSION;
 		   
 		    data [7] [1] = weapon1.RECOIL_UP; 
 		    data [7] [2] = weapon2.RECOIL_UP;
