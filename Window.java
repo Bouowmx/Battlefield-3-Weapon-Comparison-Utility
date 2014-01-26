@@ -316,8 +316,8 @@ public final class Window extends JFrame {
 		    columnNames5 [1] = weapon1.NAME;
 		    columnNames5 [2] = weapon2.NAME;  
 		    
-		    outputData [0] [1] = weapon1.NAME;
-		    outputData [0] [2] = weapon2.NAME; 
+		    outputData [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>";
+		    outputData [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>"; 
 		    outputData [1] [1] = weapon1.MAX_DAMAGE;
 		    outputData [1] [2] = weapon2.MAX_DAMAGE; 
 		    outputData [2] [1] = weapon1.MIN_DAMAGE; 
@@ -326,8 +326,8 @@ public final class Window extends JFrame {
 		    outputData [3] [2] = weapon2.DAMAGE_DO_START;
 		    outputData [4] [1] = weapon1.DAMAGE_DO_END; 
 		    outputData [4] [2] = weapon2.DAMAGE_DO_END;
-		    outputData [5] [1] = weapon1.NAME;
-		    outputData [5] [2] = weapon2.NAME;
+		    outputData [5] [1] = "<html><b>" + weapon1.NAME + "</b></html>";
+		    outputData [5] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    outputData [6] [1] = weapon1.RATE_OF_FIRE; 
 		    outputData [6] [2] = weapon2.RATE_OF_FIRE;
 		    outputData [7] [1] = weapon1.MUZZLE_VELOCITY; 
@@ -335,8 +335,8 @@ public final class Window extends JFrame {
 		    outputData [8] [1] = weapon1.SUPPRESSION; 
 		    outputData [8] [2] = weapon2.SUPPRESSION;
 		   
-		    recoilData [0] [1] = weapon1.NAME; 
-		    recoilData [0] [2] = weapon2.NAME;
+		    recoilData [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    recoilData [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    recoilData [1] [1] = weapon1.RECOIL_UP; 
 		    recoilData [1] [2] = weapon2.RECOIL_UP;
 		    recoilData [2] [1] = weapon1.RECOIL_LEFT; 
@@ -348,16 +348,16 @@ public final class Window extends JFrame {
 		    recoilData [5] [1] = weapon1.RECOIL_DECREASE; 
 		    recoilData [5] [2] = weapon2.RECOIL_DECREASE;
 
-		    spreadDataADS [0] [1] = weapon1.NAME; 
-		    spreadDataADS [0] [2] = weapon2.NAME;
+		    spreadDataADS [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    spreadDataADS [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    spreadDataADS [1] [1] = weapon1.ADS_STATIONARY_STANDING_SPREAD; 
 		    spreadDataADS [1] [2] = weapon2.ADS_STATIONARY_STANDING_SPREAD;
 		    spreadDataADS [2] [1] = weapon1.ADS_STATIONARY_CROUCHING_SPREAD; 
 		    spreadDataADS [2] [2] = weapon2.ADS_STATIONARY_CROUCHING_SPREAD ;
 		    spreadDataADS [3] [1] = weapon1.ADS_STATIONARY_PRONE_SPREAD; 
 		    spreadDataADS [3] [2] = weapon2.ADS_STATIONARY_PRONE_SPREAD;
-		    spreadDataADS [4] [1] = weapon1.NAME; 
-		    spreadDataADS [4] [2] = weapon2.NAME;
+		    spreadDataADS [4] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    spreadDataADS [4] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    spreadDataADS [5] [1] = weapon1.ADS_MOVING_STANDING_SPREAD; 
 		    spreadDataADS [5] [2] = weapon2.ADS_MOVING_STANDING_SPREAD;
 		    spreadDataADS [6] [1] = weapon1.ADS_MOVING_CROUCHING_SPREAD; 
@@ -365,16 +365,16 @@ public final class Window extends JFrame {
 		    spreadDataADS [7] [1] = weapon1.ADS_MOVING_PRONE_SPREAD; 
 		    spreadDataADS [7] [2] = weapon2.ADS_MOVING_PRONE_SPREAD;
 
-		    spreadDataHIP [0] [1] = weapon1.NAME; 
-		    spreadDataHIP [0] [2] = weapon2.NAME;
+		    spreadDataHIP [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    spreadDataHIP [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    spreadDataHIP [1] [1] = weapon1.HIP_STATIONARY_STANDING_SPREAD; 
 		    spreadDataHIP [1] [2] = weapon2.HIP_STATIONARY_STANDING_SPREAD;
 		    spreadDataHIP [2] [1] = weapon1.HIP_STATIONARY_CROUCHING_SPREAD; 
 		    spreadDataHIP [2] [2] = weapon2.HIP_STATIONARY_CROUCHING_SPREAD;
 		    spreadDataHIP [3] [1] = weapon1.HIP_STATIONARY_PRONE_SPREAD; 
 		    spreadDataHIP [3] [2] = weapon2.HIP_STATIONARY_PRONE_SPREAD;
-		    spreadDataHIP [4] [1] = weapon1.NAME; 
-		    spreadDataHIP [4] [2] = weapon2.NAME;
+		    spreadDataHIP [4] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    spreadDataHIP [4] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    spreadDataHIP [5] [1] = weapon1.HIP_MOVING_STANDING_SPREAD; 
 		    spreadDataHIP [5] [2] = weapon2.HIP_MOVING_STANDING_SPREAD;
 		    spreadDataHIP [6] [1] = weapon1.HIP_MOVING_CROUCHING_SPREAD; 
@@ -382,8 +382,8 @@ public final class Window extends JFrame {
 		    spreadDataHIP [7] [1] = weapon1.HIP_MOVING_PRONE_SPREAD; 
 		    spreadDataHIP [7] [2] = weapon2.HIP_MOVING_PRONE_SPREAD;
 
-		    spreadData [0] [1] = weapon1.NAME; 
-		    spreadData [0] [2] = weapon2.NAME;
+		    spreadData [0] [1] = "<html><b>" + weapon1.NAME + "</b></html>"; 
+		    spreadData [0] [2] = "<html><b>" + weapon2.NAME + "</b></html>";
 		    spreadData [1] [1] = weapon1.SPREAD_INCREASE; 
 		    spreadData [1] [2] = weapon2.SPREAD_INCREASE;
 		    spreadData [2] [1] = weapon1.SPREAD_DECREASE; 
