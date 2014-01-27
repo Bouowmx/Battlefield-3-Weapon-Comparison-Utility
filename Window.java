@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import org.nlogo.lite.InterfaceComponent;
 
 public final class Window extends JFrame {
+<<<<<<< HEAD
 	public static HashMap<String, Weapon> weapons;
 	public InterfaceComponent timeToKillGraph;
 	public JButton compareButton;
@@ -114,6 +115,121 @@ public final class Window extends JFrame {
 	//	"Weapon 1",
 	//	"Weapon 2", 
 	// };
+=======
+    public static HashMap<String, Weapon> weapons;
+    public InterfaceComponent timeToKillGraph;
+    public JButton compareButton;
+    public JComboBox<String> themeComboBox;
+    public JComboBox<String> weapon1ComboBox;
+    public JComboBox<String> weapon1PrimaryAttachmentComboBox;
+    public JComboBox<String> weapon1SecondaryAttachmentComboBox;
+    public JComboBox<String> weapon2ComboBox;
+    public JComboBox<String> weapon2PrimaryAttachmentComboBox;
+    public JComboBox<String> weapon2SecondaryAttachmentComboBox;
+    public JLabel instructionsLabel;
+    public JLabel themeLabel;
+    public JLabel notesLabel;
+    public JLabel weapon1Image;
+    public JLabel weapon2Image;
+    public JLabel vsLabel;
+    //   public JLabel statsLabel;
+    public JSeparator separator1;
+    public JSeparator separator2;
+    public JSeparator separator3;
+    //    public JSeparator separator4; 
+    public JTable outputTable;
+    public JTable recoilTable; 
+    public JTable adsTable; 
+    public JTable hipTable; 
+    //public JTable spreadTable; 
+    public JScrollPane scrollpaneOutput; 
+    public JScrollPane scrollpaneRecoil; 
+    public JScrollPane scrollpaneADS;
+    public JScrollPane scrollpaneHIP;
+    public JScrollPane scrolpaneSpread; 
+
+    //make a statsLabel
+    //NTS- make it so better stat is in bold? (see .py project)
+    //unable to- operands are objects, cannot use binary operator '<'
+
+    String[] columnNames1 = {
+	"Output",
+	"Weapon 1",
+	"Weapon 2",
+    };
+
+    Object[][] outputData = {
+	new Object[] {"<html><b>DAMAGE</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
+	new Object[] {"Max", 0, 0}, 
+	new Object[] {"Min", 0, 0},
+	new Object[] {"Dropoff Start", 0, 0},
+	new Object[] {"Dropoff End", 0, 0},
+	new Object[] {"<html><b>OUTPUT</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //Output-5
+	new Object[] {"Rate of Fire", 0, 0},
+	new Object[] {"Muzzle Velocity", 0, 0},
+	new Object[] {"Suppression", 0, 0},
+    };
+
+    String[] columnNames2 = {
+	"Recoil",
+	"Weapon 1",
+	"Weapon 2", 
+    };
+    
+    Object[][] recoilData = {
+	new Object[] {"<html><b>RECOIL</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, 
+	new Object[] {"Recoil Up", 0, 0},
+	new Object[] {"Recoil Left", 0, 0},
+	new Object[] {"Recoil Right", 0, 0},
+	new Object[] {"First Shot x", 0, 0},
+	new Object[] {"Recovery", 0, 0},
+	new Object[] {"<html><b>SPREAD</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},	
+	new Object[] {"Increase", 0, 0},
+	new Object[] {"Decrease", 0, 0},
+    };
+
+    String[] columnNames3 = {
+	"ADS Spread",
+	"Weapon 1",
+	"Weapon 2", 
+    };
+
+	//separate subtables for legibilty
+
+    Object[][] spreadDataADS = {
+	new Object[] {"<html><b>ADS-STATION</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
+	new Object[] {"Standing", 0, 0},
+	new Object[] {"Crouching", 0, 0},
+	new Object[] {"Prone", 0, 0},
+	new Object[] {"<html><b>ADS-MOVING</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
+	new Object[] {"Moving", 0, 0},
+	new Object[] {"Crouching", 0, 0},
+	new Object[] {"Prone", 0, 0}
+    };
+
+    String[] columnNames4 = {
+	"HIP Spread",
+	"Weapon 1",
+	"Weapon 2", 
+    };
+
+    Object[][] spreadDataHIP = {
+	new Object[] {"<html><b>HIP-STATION</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"},
+	new Object[] {"Standing", 0, 0},
+	new Object[] {"Crouching", 0, 0},
+	new Object[] {"Prone", 0, 0},
+	new Object[] {"<html><b>ADS-MOVING</b></html>", "<html><b>WEAPON 1</b></html>", "<html><b>WEAPON 2</b></html>"}, //4
+	new Object[] {"Standing", 0, 0},
+	new Object[] {"Crouching", 0, 0},
+	new Object[] {"Prone", 0, 0},
+    };
+    
+    //   String[] columnNames5 = {
+    //	"Spread",
+    //	"Weapon 1",
+    //	"Weapon 2", 
+    // };
+>>>>>>> 34b4ee7ee1c988feea0218341d95a0d5fbd976e7
 
 	//	  Object[][] spreadData = {
 	//	new Object[] {"<html><b>SPREAD</b>", "<html><b>WEAPON 1</b>", "<html><b>WEAPON 2</b>"},	
