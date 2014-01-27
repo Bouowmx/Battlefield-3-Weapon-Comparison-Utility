@@ -57,6 +57,7 @@ public final class Window extends JFrame {
 
     //make a statsLabel
     //NTS- make it so better stat is in bold? (see .py project)
+    //unable to- operands are objects, cannot use binary operator '<'
 
     String[] columnNames1 = {
 	"Output",
